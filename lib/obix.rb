@@ -1,7 +1,12 @@
 require "obix/version"
 
 module OBIX
-  autoload :Object, "obix/object"
+  autoload :Objects, "obix/objects"
+  autoload :Float, "obix/float"
+
+  autoload :Types, "obix/types"
+
+  autoload :Accessible, "obix/accessible"
 
   # Parse the given string as oBIX.
   #
@@ -13,6 +18,6 @@ module OBIX
       config.noblanks
     end
 
-    OBIX::Object.parse document.root
+    OBIX::Objects::Object.parse document.root
   end
 end

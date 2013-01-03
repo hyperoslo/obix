@@ -31,9 +31,9 @@ Or install it yourself as:
     object = OBIX.parse xml
 
     object.href           # => "http://myhome/thermostat/"
-    object.space_temp.val # => "67.2"
-    object.setpoint.val   # => "72.0"
-    object.furnace_on     # => "true"
+    object.space_temp.val # => 67.2
+    object.setpoint.val   # => 72.0
+    object.furnace_on     # => true
 
 ## Contributing
 
