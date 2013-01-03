@@ -5,6 +5,7 @@ module OBIX
     autoload :Float, "obix/types/float"
     autoload :Boolean, "obix/types/boolean"
     autoload :Integer, "obix/types/integer"
+    autoload :Time, "obix/types/time"
   end
 
 end
