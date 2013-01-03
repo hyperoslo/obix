@@ -7,5 +7,6 @@ module OBIX
     autoload :String, "obix/objects/string"
     autoload :Enumerable, "obix/objects/enumerable"
     autoload :Time, "obix/objects/time"
+    autoload :Date, "obix/objects/date"
   end
 end

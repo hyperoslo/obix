@@ -6,6 +6,7 @@ module OBIX
     autoload :Boolean, "obix/types/boolean"
     autoload :Integer, "obix/types/integer"
     autoload :Time, "obix/types/time"
+    autoload :Date, "obix/types/date"
   end
 
 end

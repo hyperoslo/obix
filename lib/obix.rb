@@ -42,6 +42,8 @@ module OBIX
       Objects::Enumerable.parse element
     when "abstime"
       Objects::Time.parse element
+    when "date"
+      Objects::Date.parse element
     else
       raise StandardError, "Could not parse #{element}"
     end
