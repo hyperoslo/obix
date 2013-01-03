@@ -35,6 +35,12 @@ Or install it yourself as:
     object.setpoint.val   # => 72.0
     object.furnace_on     # => true
 
+## Disclaimer
+
+This library is not complete. The following features are missing:
+
+* Support for parsing relative time objects.
+
 ## Contributing
 
 1. Fork it
