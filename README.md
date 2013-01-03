@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
     
-    # obix.xml
+    # thermostat.xml
     <obj href="http://myhome/thermostat">
       <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
       <real name="setpoint" unit="obix:units/fahrenheit" val="72.0"/>
@@ -26,20 +26,21 @@ Or install it yourself as:
     </obj>
 
     # obix.rb
-    xml = File.read "obix.xml"
+    xml = File.read "thermostat.xml"
 
-    object = OBIX.parse xml
+    thermostat = OBIX.parse xml
 
-    object.href           # => "http://myhome/thermostat/"
-    object.space_temp.val # => 67.2
-    object.setpoint.val   # => 72.0
-    object.furnace_on     # => true
+    thermostat.href           # => "http://myhome/thermostat/"
+    thermostat.space_temp.val # => 67.2
+    thermostat.setpoint.val   # => 72.0
+    thermostat.furnace_on     # => true
 
 ## Disclaimer
 
 This library is not complete. The following features are missing:
 
-* Support for parsing relative time objects.
+* Support for parsing relative time objects `reltime` and `time`.
+* Support for URI references.
 
 ## Contributing
 
