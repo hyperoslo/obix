@@ -23,6 +23,10 @@ module OBIX
         end
       end
 
+      def to_s
+        "#<OBIX::Objects::Object #{@attributes}>"
+      end
+
       class << self
 
         # Initialize an object with the given string.
