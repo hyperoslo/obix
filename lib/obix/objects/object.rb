@@ -44,16 +44,7 @@ module OBIX
 
           object.children.each do |child|
             name   = child["name"].underscore
-
-            # TODO: Refactor this.
-            object = case child.name
-            when "real"
-              Float.parse child
-            when "bool"
-              Boolean.parse child
-            else
-              raise StandardError, "Could not parse #{child}"
-            end
+            object = OBIX.parse_element child
 
             objects.store name, object
           end

@@ -18,6 +18,32 @@ module OBIX
       config.noblanks
     end
 
-    OBIX::Objects::Object.parse document.root
+    parse_element document.root
+  end
+
+  # Parse the given element as an oBIX object.
+  #
+  # element - A Nokogiri::XML::Node instance.
+  #
+  # Returns an OBIX::Object instance or derivative thereof.
+  def self.parse_element element
+    case element.name
+    when "obj"
+      Objects::Object.parse element
+    when "bool"
+      Objects::Boolean.parse element
+    when "int"
+      Objects::Integer.parse element
+    when "real"
+      Objects::Float.parse element
+    when "str"
+      Objects::String.parse element
+    when "enum"
+      Objects::Enumerable.parse element
+    when "abstime"
+      Objects::Time.parse element
+    else
+      raise StandardError, "Could not parse #{element}"
+    end
   end
 end
