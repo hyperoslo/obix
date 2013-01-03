@@ -8,7 +8,7 @@ require "test_helper"
 
 class ObjectTest < MiniTest::Unit::TestCase
 
-  def test_parses_strings
+  def test_parses
     object = OBIX.parse fixture "thermostat.xml"
 
     assert_equal "http://myhome/thermostat", object.href
