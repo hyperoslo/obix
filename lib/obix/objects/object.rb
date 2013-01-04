@@ -15,12 +15,12 @@ module OBIX
       attribute :writable, type: Types::Boolean
       attribute :status, type: Types::String
 
-      def initialize attributes, objects
-        @attributes = attributes.merge objects
+      attr_reader :objects
 
-        objects.each do |key, value|
-          self.class.send :attribute, key
-        end
+      attr_reader :objects
+      def initialize attributes, objects
+        @attributes = attributes
+        @objects    = objects
       end
 
       def to_s
@@ -36,17 +36,16 @@ module OBIX
         # Returns an Object instance.
         def parse object
           attributes = {}
-          objects    = {}
+          objects    = []
 
           object.attributes.each do |name, attribute|
             attributes.store name, attribute.value
           end
 
           object.children.each do |child|
-            name   = child["name"].underscore
             object = OBIX.parse_element child
 
-            objects.store name, object
+            objects << object
           end
 
           new attributes, objects

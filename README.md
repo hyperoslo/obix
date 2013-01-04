@@ -30,10 +30,13 @@ Or install it yourself as:
 
     thermostat = OBIX.parse xml
 
-    thermostat.href           # => "http://myhome/thermostat/"
-    thermostat.space_temp.val # => 67.2
-    thermostat.setpoint.val   # => 72.0
-    thermostat.furnace_on     # => true
+    thermostat.href # => "http://myhome/thermostat/"
+
+    temperature = thermostat.objects.find { |obj| obj.name == "spaceTemp" }
+    temperature.val # => 67.2
+
+    furnace_on = thermostat.objects.find { |obj| obj.name = "furnaceOn" }
+    furnace_on.val # => true
 
 ## Disclaimer
 
