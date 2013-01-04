@@ -42,8 +42,13 @@ Or install it yourself as:
 
 This library is not complete. The following features are missing:
 
-* Support for parsing relative time objects `reltime` and `time`.
+* Support for contracts.
+* Support for relative time.
 * Support for URI references.
+* Support for oBIX references.
+* Support for errors.
+* Support for operations.
+* Support for feeds.
 
 ## Contributing
 
