@@ -24,7 +24,11 @@ module OBIX
       end
 
       def to_s
-        "#<OBIX::Objects::Object #{@attributes}>"
+        attributes = @attributes.map do |key, value|
+          "#{key}: \"#{value}\""
+        end.join " "
+
+        "#<#{self.class} #{attributes}>"
       end
 
       class << self

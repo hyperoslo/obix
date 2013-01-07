@@ -18,4 +18,10 @@ class ObjectTest < MiniTest::Unit::TestCase
     assert_equal "obix:units/fahrenheit", temperature.unit
   end
 
+  def test_serializes_to_string
+    thermostat = OBIX.parse fixture "thermostat.xml"
+
+    assert_equal "#<OBIX::Objects::Object href: \"http://myhome/thermostat\">", thermostat.to_s
+  end
+
 end
