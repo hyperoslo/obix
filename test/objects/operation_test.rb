@@ -7,7 +7,7 @@ require "test_helper"
 class OperationTest < MiniTest::Unit::TestCase
 
   def test_parses_operations
-    operation = OBIX.parse fixture "objects/operation.xml"
+    operation = OBIX.parse string: fixture("objects/operation.xml")
 
     assert_instance_of OBIX::Objects::Operation, operation
     assert_equal "/operate", operation.href

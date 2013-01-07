@@ -19,19 +19,16 @@ Or install it yourself as:
 ## Usage
     
     # thermostat.xml
-    <obj href="http://myhome/thermostat">
     <obj href="http://domain/thermostat">
       <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
       <real name="setpoint" unit="obix:units/fahrenheit" val="72.0"/>
       <bool name="furnaceOn" val="true"/>
     </obj>
 
-    # obix.rb
-    xml = File.read "thermostat.xml"
+    # thermostat.rb
+    thermostat = OBIX.parse file: "thermostat.xml"
 
-    thermostat = OBIX.parse xml
-
-    thermostat.href # => "http://myhome/thermostat/"
+    thermostat.href # => "http://domain/thermostat/"
 
     temperature = thermostat.objects.find { |obj| obj.name == "spaceTemp" }
     temperature.val # => 67.2

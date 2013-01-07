@@ -8,10 +8,26 @@ module OBIX
 
   # Parse the given string as oBIX.
   #
-  # string - A String describing oBIX data.
+  # source - A Hash of options:
+  #          :string - A String describing oBIX data.
+  #          :url    - A String describing a URL that the oBIX data may be loaded from.
   #
   # Returns an OBIX::Object instance.
-  def self.parse string
+  def self.parse source
+    raise StandardError, "You may only provide a single source" if source.size > 1
+
+    string = source[:string]
+    url    = source[:url]
+    file   = source[:file]
+
+    if url
+      string = Net::HTTP.get URI url
+    end
+
+    if file
+      string = File.read file
+    end
+
     document = Nokogiri::XML.parse(string) do |config|
       config.noblanks
     end

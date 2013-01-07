@@ -7,7 +7,7 @@ require "test_helper"
 class EnumerableTest < MiniTest::Unit::TestCase
 
   def test_parses_enumerables
-    object = OBIX.parse fixture "objects/enumerable.xml"
+    object = OBIX.parse string: fixture("objects/enumerable.xml")
 
     assert_instance_of OBIX::Objects::Enumerable, object
     assert_equal "/enums/OffSlowFast", object.range

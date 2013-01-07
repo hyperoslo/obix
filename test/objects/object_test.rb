@@ -8,7 +8,7 @@ require "test_helper"
 class ObjectTest < MiniTest::Unit::TestCase
 
   def test_parses
-    thermostat = OBIX.parse fixture "thermostat.xml"
+    thermostat = OBIX.parse string: fixture("thermostat.xml")
 
     assert_equal "http://myhome/thermostat", thermostat.href
 
@@ -19,7 +19,7 @@ class ObjectTest < MiniTest::Unit::TestCase
   end
 
   def test_serializes_to_string
-    thermostat = OBIX.parse fixture "thermostat.xml"
+    thermostat = OBIX.parse string: fixture("thermostat.xml")
 
     assert_equal "#<OBIX::Objects::Object href: \"http://myhome/thermostat\">", thermostat.to_s
   end
