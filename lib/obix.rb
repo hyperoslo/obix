@@ -1,4 +1,5 @@
 require "obix/version"
+require "nokogiri"
 
 module OBIX
   autoload :Objects, "obix/objects"

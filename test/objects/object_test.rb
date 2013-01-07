@@ -1,7 +1,6 @@
 require "obix"
 require "minitest/unit"
 require "minitest/autorun"
-require "nokogiri"
 require "active_support/all"
 
 require "test_helper"
