@@ -7,6 +7,7 @@ module OBIX
     autoload :Integer, "obix/types/integer"
     autoload :Time, "obix/types/time"
     autoload :Date, "obix/types/date"
+    autoload :Duration, "obix/types/duration"
   end
 
 end

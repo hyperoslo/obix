@@ -41,7 +41,6 @@ Or install it yourself as:
 This library is not complete. The following features are missing:
 
 * Contracts.
-* Relative time.
 * URI references.
 * OBIX references.
 * Errors.

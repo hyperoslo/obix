@@ -20,5 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rake"
   gem.add_development_dependency "mocha"
   gem.add_runtime_dependency "nokogiri"
+  gem.add_runtime_dependency "rdf-xsd"
+  gem.add_runtime_dependency "equivalent-xml"
   gem.add_runtime_dependency "activesupport"
 end

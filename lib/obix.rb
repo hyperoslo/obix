@@ -60,6 +60,8 @@ module OBIX
       Objects::Time.parse element
     when "date"
       Objects::Date.parse element
+    when "reltime"
+      Objects::Duration.parse element
     when "list"
       Objects::List.parse element
     when "op"
