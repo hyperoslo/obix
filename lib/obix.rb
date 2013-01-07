@@ -3,10 +3,7 @@ require "nokogiri"
 
 module OBIX
   autoload :Objects, "obix/objects"
-  autoload :Float, "obix/float"
-
   autoload :Types, "obix/types"
-
   autoload :Accessible, "obix/accessible"
 
   # Parse the given string as oBIX.
