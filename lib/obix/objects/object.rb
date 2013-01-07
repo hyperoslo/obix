@@ -43,6 +43,8 @@ module OBIX
           end
 
           object.children.each do |child|
+            next if child.is_a? Nokogiri::XML::Text
+
             object = OBIX.parse_element child
 
             objects << object
