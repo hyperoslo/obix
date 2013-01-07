@@ -37,6 +37,8 @@ module OBIX
       Objects::Integer.parse element
     when "real"
       Objects::Float.parse element
+    when "int"
+      Objects::Integer.parse element
     when "str"
       Objects::String.parse element
     when "enum"
