@@ -42,13 +42,13 @@ Or install it yourself as:
 
 This library is not complete. The following features are missing:
 
-* Support for contracts.
-* Support for relative time.
-* Support for URI references.
-* Support for oBIX references.
-* Support for errors.
-* Support for operations.
-* Support for feeds.
+* Contracts.
+* Relative time.
+* URI references.
+* OBIX references.
+* Errors.
+* Operations.
+* Feeds.
 
 ## Contributing
 
