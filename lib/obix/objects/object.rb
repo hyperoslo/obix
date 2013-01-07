@@ -17,7 +17,6 @@ module OBIX
 
       attr_reader :objects
 
-      attr_reader :objects
       def initialize attributes, objects
         @attributes = attributes
         @objects    = objects
