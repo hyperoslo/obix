@@ -12,16 +12,21 @@ module OBIX
       # Invoke the operation.
       #
       # object - An OBIX::Objects::Object or derivative thereof.
+      #
+      # Returns an OBIX::Objects::Object or derivative thereof describing
+      # the result of the operation.
       def invoke object = nil
         uri = URI "http://example.org/#{href}"
 
-        Net::HTTP.start uri.host do |http|
+        response = Net::HTTP.start uri.host do |http|
           if object
             http.post href, object.to_xml
           else
             http.post href, nil
           end
         end
+
+        OBIX.parse string: response.body
       end
     end
 
