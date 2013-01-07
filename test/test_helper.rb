@@ -1,3 +1,5 @@
+require "mocha/setup"
+
 class MiniTest::Unit::TestCase
 
   # Read the given fixture.

@@ -10,5 +10,6 @@ module OBIX
     autoload :Time, "obix/objects/time"
     autoload :Date, "obix/objects/date"
     autoload :List, "obix/objects/list"
+    autoload :Operation, "obix/objects/operation"
   end
 end

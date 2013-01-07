@@ -46,6 +46,8 @@ module OBIX
       Objects::Date.parse element
     when "list"
       Objects::List.parse element
+    when "op"
+      Objects::Operation.parse element
     else
       raise StandardError, "Could not parse #{element}"
     end
