@@ -20,6 +20,7 @@ Or install it yourself as:
     
     # thermostat.xml
     <obj href="http://myhome/thermostat">
+    <obj href="http://domain/thermostat">
       <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
       <real name="setpoint" unit="obix:units/fahrenheit" val="72.0"/>
       <bool name="furnaceOn" val="true"/>
