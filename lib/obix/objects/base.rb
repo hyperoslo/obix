@@ -60,9 +60,7 @@ module OBIX
           end
 
           element.children.each do |child|
-            next if child.is_a? Nokogiri::XML::Text
-
-            objects.push parse child
+            objects.push parse child unless child.is_a? Nokogiri::XML::Text
           end
 
           object.new attributes, objects
