@@ -5,8 +5,9 @@ module OBIX
   autoload :Objects, "obix/objects"
   autoload :Types, "obix/types"
   autoload :Tag, "obix/tag"
+  autoload :Builder, "obix/builder"
 
-  # Parse the given string as oBIX.
+  # Parse the given source as OBIX.
   #
   # source - A Hash of options:
   #          :string - A String describing oBIX data.
@@ -35,39 +36,20 @@ module OBIX
     parse_element document.root
   end
 
-  # Parse the given element as an oBIX object.
+  # Parse the given element as an OBIX object.
   #
   # element - A Nokogiri::XML::Node instance.
   #
   # Returns an OBIX::Object instance or derivative thereof.
   def self.parse_element element
-    case element.name
-    when "obj"
-      Objects::Object.parse element
-    when "bool"
-      Objects::Boolean.parse element
-    when "int"
-      Objects::Integer.parse element
-    when "real"
-      Objects::Float.parse element
-    when "int"
-      Objects::Integer.parse element
-    when "str"
-      Objects::String.parse element
-    when "enum"
-      Objects::Enumerable.parse element
-    when "abstime"
-      Objects::Time.parse element
-    when "date"
-      Objects::Date.parse element
-    when "reltime"
-      Objects::Duration.parse element
-    when "list"
-      Objects::List.parse element
-    when "op"
-      Objects::Operation.parse element
+    object = OBIX::Objects.list.find do |object|
+      object.new.tag.to_s == element.name
+    end
+
+    if object
+      object.parse element
     else
-      raise StandardError, "Could not parse #{element}"
+      raise "Unknown element #{element}"
     end
   end
 end

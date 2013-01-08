@@ -35,6 +35,17 @@ Or install it yourself as:
     temperature = thermostat.objects.find { |obj| obj.name == "spaceTemp" }
     temperature.val # => 67.2
 
+### Build an object
+
+    # thermostat.rb
+    object = OBIX::Builder.new do |obix|
+      obix.obj href: "http://domain/thermostat" do
+        obix.real name: "spaceTemp", unit: "obix:units/fahrenheit" val: 67.2
+        obix.real name: "setpoint", unit: "obix:units/fahrenheit" val: 72.0
+        obix.bool name: "furnaceOn", val: true
+      end
+    end
+
 ### Invoke an operation
 
     # furnace.xml

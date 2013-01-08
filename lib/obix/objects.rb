@@ -1,16 +1,39 @@
 module OBIX
   module Objects
-    autoload :Object, "obix/objects/object"
-    autoload :Float, "obix/objects/float"
-    autoload :Integer, "obix/objects/integer"
-    autoload :Boolean, "obix/objects/boolean"
-    autoload :Integer, "obix/objects/integer"
-    autoload :String, "obix/objects/string"
-    autoload :Enumerable, "obix/objects/enumerable"
-    autoload :Time, "obix/objects/time"
-    autoload :Date, "obix/objects/date"
-    autoload :List, "obix/objects/list"
-    autoload :Operation, "obix/objects/operation"
-    autoload :Duration, "obix/objects/duration"
+    autoload :Base, "obix/objects/base"
+
+    @objects = []
+
+    # List objects.
+    #
+    # Returns an array of OBIX::Objects::Object instances or derivatives thereof.
+    def self.list
+      @objects
+    end
+
+    # Register an object.
+    #
+    # object - A class that inherits from OBIX::Objects::Base.
+    def self.register object
+      @objects.push object
+    end
+
+    # Load all objects.
+    def self.load
+      require "obix/objects/object"
+      require "obix/objects/float"
+      require "obix/objects/integer"
+      require "obix/objects/boolean"
+      require "obix/objects/string"
+      require "obix/objects/enumerable"
+      require "obix/objects/time"
+      require "obix/objects/date"
+      require "obix/objects/list"
+      require "obix/objects/operation"
+      require "obix/objects/duration"
+    end
+
+    load
   end
 end
+
