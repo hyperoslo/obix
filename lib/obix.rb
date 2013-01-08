@@ -4,7 +4,7 @@ require "nokogiri"
 module OBIX
   autoload :Objects, "obix/objects"
   autoload :Types, "obix/types"
-  autoload :Accessible, "obix/accessible"
+  autoload :Tag, "obix/tag"
 
   # Parse the given string as oBIX.
   #

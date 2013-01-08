@@ -1,7 +1,16 @@
 module OBIX
-  module Accessible
+  module Tag
 
-    # Define a method for accessing the given attribute or object.
+    # Define a method for accessing the name of the tag.
+    #
+    # name - A Symbol or String describing the name of the tag.
+    def tag name
+      define_method :tag do
+        name
+      end
+    end
+
+    # Define a method for accessing the given attribute.
     #
     # name    - A Symbol describing the name of the attribute.
     # options - A Hash of query options:

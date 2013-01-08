@@ -3,7 +3,7 @@ module OBIX
 
     # Objects are the root abstraction in oBIX.
     class Object
-      extend Accessible
+      extend Tag
 
       attribute :name, type: Types::String
       attribute :href, type: Types::String

@@ -6,12 +6,14 @@ require "active_support/all"
 
 require "test_helper"
 
-class AccessibleTest < MiniTest::Unit::TestCase
+class TagTest < MiniTest::Unit::TestCase
 
   class Dummy
     include OBIX
 
-    extend Accessible
+    extend Tag
+
+    tag :dummy
 
     attribute :string, type: Types::String
     attribute :integer, type: Types::Integer
@@ -22,6 +24,12 @@ class AccessibleTest < MiniTest::Unit::TestCase
     def initialize attributes = {}
       @attributes = attributes
     end
+  end
+
+  def test_creates_tag_method
+    test = Dummy.new
+
+    assert_equal :dummy, test.tag
   end
 
   def test_creates_access_method
