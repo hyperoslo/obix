@@ -39,7 +39,7 @@ Or install it yourself as:
 
     # thermostat.rb
     object = OBIX::Builder.new do |obix|
-      obix.obj href: "http://domain/thermostat" do
+      obix.obj href: "http://domain/thermostat" do |obix|
         obix.real name: "spaceTemp", unit: "obix:units/fahrenheit" val: 67.2
         obix.real name: "setpoint", unit: "obix:units/fahrenheit" val: 72.0
         obix.bool name: "furnaceOn", val: true
