@@ -46,6 +46,12 @@ module OBIX
         #
         # Returns an Object instance.
         def parse element
+          object = OBIX::Objects.list.find do |object|
+            object.new.tag.to_s == element.name
+          end
+
+          raise "Unknown element #{element}" unless object
+
           attributes = {}
           objects    = []
 
@@ -56,10 +62,10 @@ module OBIX
           element.children.each do |child|
             next if child.is_a? Nokogiri::XML::Text
 
-            objects.push OBIX.parse_element child
+            objects.push parse child
           end
 
-          new attributes, objects
+          object.new attributes, objects
         end
 
         # Register objects for classes that inherit from this class.

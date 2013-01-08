@@ -33,23 +33,6 @@ module OBIX
       config.noblanks
     end
 
-    parse_element document.root
-  end
-
-  # Parse the given element as an OBIX object.
-  #
-  # element - A Nokogiri::XML::Node instance.
-  #
-  # Returns an OBIX::Object instance or derivative thereof.
-  def self.parse_element element
-    object = OBIX::Objects.list.find do |object|
-      object.new.tag.to_s == element.name
-    end
-
-    if object
-      object.parse element
-    else
-      raise "Unknown element #{element}"
-    end
+    OBIX::Objects::Object.parse document.root
   end
 end
