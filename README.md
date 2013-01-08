@@ -17,7 +17,9 @@ Or install it yourself as:
     $ gem install obix
 
 ## Usage
-    
+
+### Parse an object
+
     # thermostat.xml
     <obj href="http://domain/thermostat">
       <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
@@ -33,8 +35,21 @@ Or install it yourself as:
     temperature = thermostat.objects.find { |obj| obj.name == "spaceTemp" }
     temperature.val # => 67.2
 
-    furnace_on = thermostat.objects.find { |obj| obj.name = "furnaceOn" }
-    furnace_on.val # => true
+### Invoke an operation
+
+    # furnace.xml
+    <obj href="http://domain/furnace">
+      <bool name="active" val="false"/>
+      <op name="activate" href="http://domain/furnace/activate" in="obix:Nil" out="obix:Nil"/>
+      <op name="deactivate" href="http://domain/furnace/deactivate" in="obix:Nil" out="obix:Nil"/>
+    </obj>
+
+    # furnace.rb
+    furnace = OBIX.parse file: "furnace.xml"
+
+    activate = furnace.objects.find { |obj| obj.name == "activate" }
+    activate.invoke
+
 
 ## Disclaimer
 
