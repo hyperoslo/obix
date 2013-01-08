@@ -50,7 +50,7 @@ module OBIX
             object.new.tag.to_s == element.name
           end
 
-          raise "Unknown element #{element}" unless object
+          raise OBIX::Objects::UnknownObjectError, "Unknown element #{element}" unless object
 
           attributes = {}
           objects    = []

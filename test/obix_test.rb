@@ -7,7 +7,7 @@ require "test_helper"
 
 class OBIXTest < MiniTest::Unit::TestCase
   def test_parses_from_string
-    xml = fixture "thermostat.xml"
+    xml = fixture "valid.xml"
 
     object = OBIX.parse string: xml
 
@@ -15,21 +15,21 @@ class OBIXTest < MiniTest::Unit::TestCase
   end
 
   def test_parses_from_url
-    xml = fixture "thermostat.xml"
+    xml = fixture "valid.xml"
 
-    Net::HTTP.get.stubs(:get).returns(xml)
+    Net::HTTP.stubs(:get).returns(xml)
 
     object = OBIX.parse url: "http://domain/thermostat"
 
     assert_instance_of OBIX::Objects::Object, object
   end
 
-  def test_parses_from_url
-    xml = fixture "thermostat.xml"
+  def test_parses_from_file
+    xml = fixture "valid.xml"
 
     File.stubs(:read).returns(xml)
 
-    object = OBIX.parse file: "thermostat.xml"
+    object = OBIX.parse file: "valid.xml"
 
     assert_instance_of OBIX::Objects::Object, object
   end

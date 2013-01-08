@@ -34,6 +34,8 @@ module OBIX
     end
 
     load
+
+    class UnknownObjectError < StandardError; end
   end
 end
 
