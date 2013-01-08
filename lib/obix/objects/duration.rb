@@ -3,6 +3,8 @@ module OBIX
 
     # Durations represent a relative duration of time.
     class Duration < Object
+      tag :reltime
+
       attribute :val, type: Types::Duration, default: 0
       attribute :min, type: Types::Duration
       attribute :max, type: Types::Duration

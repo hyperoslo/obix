@@ -24,4 +24,18 @@ class ObjectTest < MiniTest::Unit::TestCase
     assert_equal "#<OBIX::Objects::Object href: \"http://myhome/thermostat\">", thermostat.to_s
   end
 
+  def test_serializes_to_xml
+    xml = fixture "thermostat.xml"
+
+    thermostat = OBIX.parse string: xml
+
+    assert_equal xml.chop, thermostat.to_xml
+  end
+
+  def test_constructs
+    object = OBIX::Objects::Object.new foo: "bar"
+
+    assert_equal "<obj foo=\"bar\"/>", object.to_xml
+  end
+
 end

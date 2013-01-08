@@ -3,6 +3,8 @@ module OBIX
 
     # Floats represent floating point numbers.
     class Float < Object
+      tag :real
+
       attribute :val, type: Types::Float, default: 0.0
       attribute :min, type: Types::Float
       attribute :max, type: Types::Float

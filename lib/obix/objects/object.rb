@@ -5,6 +5,8 @@ module OBIX
     class Object
       extend Tag
 
+      tag :obj
+
       attribute :name, type: Types::String
       attribute :href, type: Types::String
       attribute :is, type: Types::String
@@ -15,11 +17,23 @@ module OBIX
       attribute :writable, type: Types::Boolean
       attribute :status, type: Types::String
 
-      attr_reader :objects
+      attr_reader :objects, :attributes
 
-      def initialize attributes, objects
+      def initialize attributes, objects = []
         @attributes = attributes
         @objects    = objects
+      end
+
+      def to_xml
+        xml = Nokogiri::XML::Builder.new do |xml|
+          xml.send tag, attributes do
+            objects.each do |object|
+              xml.send object.tag, object.attributes
+            end
+          end
+        end
+
+        xml.doc.root.to_xml
       end
 
       def to_s

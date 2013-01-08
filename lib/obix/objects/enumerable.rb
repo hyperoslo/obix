@@ -3,6 +3,8 @@ module OBIX
 
     # Enumerables represent a value which must match a finite set of values.
     class Enumerable < Object
+      tag :enum
+
       attribute :val, type: Types::String, default: nil
       attribute :range, type: Types::String
     end
