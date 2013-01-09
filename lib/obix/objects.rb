@@ -33,7 +33,7 @@ module OBIX
     def self.find tag
       object = @objects.find do |object|
         object.new.tag.to_s == tag.to_s
-      end or raise OBIX::Objects::UnknownObjectError, "Unknown element \"#{tag}\""
+      end or raise OBIX::Objects::UnknownObjectError, "Unknown element '#{tag}'"
     end
 
     class UnknownObjectError < StandardError; end
