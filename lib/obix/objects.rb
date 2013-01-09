@@ -25,6 +25,17 @@ module OBIX
       @objects
     end
 
+    # Find an object by the given tag.
+    #
+    # tag - A String or Symbol describing a tag.
+    #
+    # Returns a derivative of OBIX::Objects::Base.
+    def self.find tag
+      object = @objects.find do |object|
+        object.new.tag.to_s == tag.to_s
+      end or raise OBIX::Objects::UnknownObjectError, "Unknown element \"#{tag}\""
+    end
+
     class UnknownObjectError < StandardError; end
   end
 end

@@ -15,9 +15,7 @@ module OBIX
 
     # Respond to methods matching OBIX tags.
     def method_missing method, *args, &block
-      object = OBIX::Objects.list.find do |object|
-        object.new.tag == method
-      end
+      object = OBIX::Objects.find method
 
       @objects.push object.new *args, &block
     end

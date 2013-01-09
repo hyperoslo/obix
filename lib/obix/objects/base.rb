@@ -47,11 +47,7 @@ module OBIX
         #
         # Returns an Object instance.
         def parse element
-          object = OBIX::Objects.list.find do |object|
-            object.new.tag.to_s == element.name
-          end
-
-          raise OBIX::Objects::UnknownObjectError, "Unknown element #{element}" unless object
+          object = OBIX::Objects.find element.name
 
           attributes = {}
           objects    = []
