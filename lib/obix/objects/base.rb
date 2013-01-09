@@ -7,7 +7,11 @@ module OBIX
       attr_reader :objects, :attributes
 
       def initialize attributes = {}, objects = [], &block
-        @attributes = attributes
+        @attributes = {}
+
+        attributes.each do |key, value|
+          send "#{key.to_s.underscore}=", value
+        end
 
         if block_given?
           builder = OBIX::Builder.new &block

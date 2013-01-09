@@ -1,3 +1,5 @@
+require "active_support/all"
+
 module OBIX
   module Tag
 
@@ -19,6 +21,8 @@ module OBIX
       type    = options.fetch :type, nil
       default = options.fetch :default, nil
 
+      name = name.to_s.underscore
+
       define_method name do
         value = @attributes[name] || default
 
@@ -27,6 +31,10 @@ module OBIX
         else
           value
         end
+      end
+
+      define_method "#{name}=" do |value|
+        @attributes.store name, value
       end
     end
 
