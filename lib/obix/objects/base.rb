@@ -18,18 +18,19 @@ module OBIX
         end
       end
 
-      def to_xml
-        xml = Nokogiri::XML::Builder.new do |xml|
-          xml.send tag, attributes do
-            objects.each do |object|
-              xml.send object.tag, object.attributes
-            end
-          end
-        end
-
-        xml.doc.root.to_xml
+      # Serialize the object as a Nokogiri::XML::Node.
+      def to_node
+        Nokogiri::XML::Builder.new do |xml|
+          build xml
+        end.doc.root
       end
 
+      # Serialize the object as an XML String.
+      def to_xml
+        to_node.to_xml
+      end
+
+      # Serialize the object as a human-readable String.
       def to_s
         attributes = @attributes.map do |key, value|
           "#{key}: \"#{value}\""
@@ -66,6 +67,19 @@ module OBIX
           object.new attributes, objects
         end
 
+      end
+
+      protected
+
+      # Build the object as an element in a tree.
+      #
+      # xml - A Nokogiri::XML::Builder instance.
+      def build builder
+        builder.send tag, attributes do |builder|
+          objects.each do |object|
+            object.build builder
+          end
+        end
       end
 
     end

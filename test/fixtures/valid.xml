@@ -2,4 +2,9 @@
   <real name="spaceTemp" unit="obix:units/fahrenheit" val="67.2"/>
   <real name="setpoint" unit="obix:units/fahrenheit" val="72.0"/>
   <bool name="furnaceOn" val="true"/>
+  <obj name="foo">
+    <obj name="bar">
+      <obj name="baz"/>
+    </obj>
+  </obj>
 </obj>
