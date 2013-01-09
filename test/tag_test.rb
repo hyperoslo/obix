@@ -20,10 +20,18 @@ class TagTest < MiniTest::Unit::TestCase
     assert_equal :dummy, dummy.tag
   end
 
-  def test_attribute
+  def test_get_attribute
     dummy = Dummy.new foo: "foo"
 
     assert_equal "foo", dummy.foo
+  end
+
+  def test_set_attribute
+    dummy = Dummy.new foo: "foo"
+
+    dummy.foo = "bar"
+
+    assert_equal "bar", dummy.foo
   end
 
   def test_default_attribute
