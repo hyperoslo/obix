@@ -1,0 +1,5 @@
+<obj is="obix:WatchOut">
+  <list name="values">
+    <real val="39.28" href="/thermostat/" display="39.3"/>
+  </list>
+</obj>

@@ -1,0 +1,8 @@
+<obj href="http://domain/watchservice/watch32/" is="obix:Watch" display="Obix Watch">
+  <reltime name="lease" val="PT10S" href="http://domain/watchservice/watch32/lease/" display="10sec" displayName="Lease" writable="true"/>
+  <op name="add" href="http://domain/watchservice/watch32/add/" in="obix:WatchIn" out="obix:WatchOut"/>
+  <op name="remove" href="http://domain/watchservice/watch32/remove/" in="obix:WatchIn" out="obix:Nil"/>
+  <op name="pollChanges" href="http://domain/watchservice/watch32/pollChanges/" in="obix:Nil" out="obix:WatchOut"/>
+  <op name="pollRefresh" href="http://domain/watchservice/watch32/pollRefresh/" in="obix:Nil" out="obix:WatchOut"/>
+  <op name="delete" href="http://domain/watchservice/watch32/delete/" in="obix:Nil" out="obix:Nil"/>
+</obj>

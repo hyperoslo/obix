@@ -61,6 +61,25 @@ Or install it yourself as:
     activate = furnace.objects.find { |obj| obj.name == "activate" }
     activate.invoke
 
+### Create a watch
+
+    watch = Watch.make "http://domain/watchservice"
+
+    # Add objects to the watch
+    watch.add "/thermostat"
+    watch.add "/furnace"
+
+    # Remove objects from the watch
+    watch.remove "/furnace"
+
+    # Poll everything
+    watch.all
+
+    # Poll changes
+    watch.changes
+
+    # Delete the watch
+    watch.delete
 
 ## Disclaimer
 

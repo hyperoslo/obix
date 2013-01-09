@@ -1,0 +1,3 @@
+<obj href="http://domain/watchsservice/">
+  <op name="make" href="http://domain/watchservice/make/" in="obix:Nil" out="obix:Watch"/>
+</obj>

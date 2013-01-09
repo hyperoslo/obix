@@ -4,6 +4,7 @@ require "nokogiri"
 module OBIX
   autoload :Objects, "obix/objects"
   autoload :Types, "obix/types"
+  autoload :Watch, "obix/watch"
   autoload :Tag, "obix/tag"
   autoload :Builder, "obix/builder"
 
