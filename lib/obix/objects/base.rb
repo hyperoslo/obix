@@ -66,11 +66,6 @@ module OBIX
           object.new attributes, objects
         end
 
-        # Register objects for classes that inherit from this class.
-        def inherited object
-          OBIX::Objects.register object
-        end
-
       end
 
     end
