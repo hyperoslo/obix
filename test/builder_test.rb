@@ -11,13 +11,15 @@ class BuilderTest < MiniTest::Unit::TestCase
     xml = fixture "valid.xml"
 
     obix = OBIX::Builder.new do |obix|
-      obix.obj href: "http://myhome/thermostat" do |obix|
-        obix.real name: "spaceTemp", unit: "obix:units/fahrenheit", val: 67.2
-        obix.real name: "setpoint", unit: "obix:units/fahrenheit", val: 72.0
-        obix.bool name: "furnaceOn", val: true
+      obix.obj name: "foo", href: "bar" do |obix|
+        obix.obj name: "bar" do |obix|
+          obix.obj name: "baz"
+        end
       end
     end
 
-    assert_equal xml.chop, obix.object.to_xml
+    assert_equal "foo", obix.object.name
+    assert_equal "bar", obix.object.objects.first.name
+    assert_equal "baz", obix.object.objects.first.objects.first.name
   end
 end
