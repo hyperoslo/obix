@@ -12,10 +12,11 @@ module OBIX
     autoload :List, "obix/objects/list"
     autoload :Operation, "obix/objects/operation"
     autoload :Duration, "obix/objects/duration"
+    autoload :URI, "obix/objects/uri"
 
     @objects = [
       Object, Float, Integer, Boolean, String, Enumerable,
-      Time, Date, List, Operation, Duration
+      Time, Date, List, Operation, Duration, URI
     ]
 
     # List objects.
