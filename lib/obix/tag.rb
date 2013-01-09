@@ -20,7 +20,7 @@ module OBIX
       default = options.fetch :default, nil
 
       define_method name do
-        value = @attributes[name.to_s] || default
+        value = @attributes[name] || default
 
         if type
           type.cast value

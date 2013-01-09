@@ -33,31 +33,31 @@ class TagTest < MiniTest::Unit::TestCase
   end
 
   def test_creates_access_method
-    test = Dummy.new "string" => "string"
+    test = Dummy.new string: "string"
 
     assert test.string
   end
 
   def test_casts_strings
-    test = Dummy.new "string" => "string"
+    test = Dummy.new string: "string"
 
     assert_equal "string", test.string
   end
 
   def test_casts_integers
-    test = Dummy.new "integer" => "1"
+    test = Dummy.new integer: "1"
 
     assert_equal 1, test.integer
   end
 
   def test_casts_floats
-    test = Dummy.new "float" => "1.0"
+    test = Dummy.new float: "1.0"
 
     assert_equal 1.0, test.float
   end
 
   def test_casts_booleans
-    test = Dummy.new "boolean" => "true"
+    test = Dummy.new boolean: "true"
 
     assert_equal true, test.boolean
   end
