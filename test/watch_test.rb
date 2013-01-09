@@ -118,7 +118,7 @@ class WatchTest < MiniTest::Unit::TestCase
     assert_equal 39.28, changes.first.val
   end
 
-  def test_all
+  def test_delete
     OBIX::Objects::Operation.any_instance.
       expects(
         :invoke
