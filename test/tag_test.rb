@@ -7,64 +7,28 @@ require "active_support/all"
 require "test_helper"
 
 class TagTest < MiniTest::Unit::TestCase
-
-  class Dummy
-    include OBIX
-
-    extend Tag
-
+  class Dummy < OBIX::Objects::Base
     tag :dummy
 
-    attribute :string, type: Types::String
-    attribute :integer, type: Types::Integer
-    attribute :float, type: Types::Float
-    attribute :boolean, type: Types::Boolean
+    attribute :foo, type: OBIX::Types::String
     attribute :default, default: "default"
-
-    def initialize attributes = {}
-      @attributes = attributes
-    end
   end
 
-  def test_creates_tag_method
-    test = Dummy.new
+  def test_tag
+    dummy = Dummy.new
 
-    assert_equal :dummy, test.tag
+    assert_equal :dummy, dummy.tag
   end
 
-  def test_creates_access_method
-    test = Dummy.new string: "string"
+  def test_attribute
+    dummy = Dummy.new foo: "foo"
 
-    assert test.string
+    assert_equal "foo", dummy.foo
   end
 
-  def test_casts_strings
-    test = Dummy.new string: "string"
+  def test_default_attribute
+    dummy = Dummy.new
 
-    assert_equal "string", test.string
-  end
-
-  def test_casts_integers
-    test = Dummy.new integer: "1"
-
-    assert_equal 1, test.integer
-  end
-
-  def test_casts_floats
-    test = Dummy.new float: "1.0"
-
-    assert_equal 1.0, test.float
-  end
-
-  def test_casts_booleans
-    test = Dummy.new boolean: "true"
-
-    assert_equal true, test.boolean
-  end
-
-  def test_defaults
-    test = Dummy.new
-
-    assert_equal "default", test.default
+    assert_equal "default", dummy.default
   end
 end
