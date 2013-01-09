@@ -54,14 +54,16 @@ end
 
 ### Invoke an operation
 
-```ruby
-# furnace.xml
+```xml
+<!-- furnace.xml -->
 <obj href="http://domain/furnace">
   <bool name="active" val="false"/>
   <op name="activate" href="http://domain/furnace/activate" in="obix:Nil" out="obix:Nil"/>
   <op name="deactivate" href="http://domain/furnace/deactivate" in="obix:Nil" out="obix:Nil"/>
 </obj>
+```
 
+```ruby
 # furnace.rb
 furnace = OBIX.parse file: "furnace.xml"
 
