@@ -17,7 +17,13 @@ class OBIXTest < MiniTest::Unit::TestCase
   def test_parses_from_url
     xml = fixture "valid.xml"
 
-    Net::HTTP.stubs(:get).returns(xml)
+    Net::HTTP.
+      stubs(
+        :start
+      ).
+      returns(
+        stub body: xml
+      )
 
     object = OBIX.parse url: "http://domain/thermostat"
 
