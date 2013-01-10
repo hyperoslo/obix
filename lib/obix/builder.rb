@@ -3,7 +3,12 @@ module OBIX
   class Builder
     attr_reader :objects
 
-    def initialize
+    # Initialize a new builder.
+    #
+    # parent - An Objects::Object instance or derivative thereof describing the parent
+    #          of the object that will be built.
+    def initialize parent = nil
+      @parent  = parent
       @objects = []
 
       yield self
@@ -22,6 +27,8 @@ module OBIX
       attributes.each do |key, value|
         object.send "#{key}=", value
       end
+
+      object.parent = @parent
 
       @objects.push object
     end

@@ -11,7 +11,7 @@ module OBIX
         @objects    = []
 
         if block_given?
-          builder = OBIX::Builder.new &block
+          builder = OBIX::Builder.new self, &block
 
           @objects = builder.objects
         end
