@@ -34,6 +34,6 @@ class BaseTest < MiniTest::Unit::TestCase
 
     thermostat = OBIX.parse string: xml
 
-    assert_equal xml.chop, thermostat.to_xml
+    assert_equal xml, thermostat.to_xml
   end
 end

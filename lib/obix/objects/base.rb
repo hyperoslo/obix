@@ -31,7 +31,7 @@ module OBIX
 
       # Serialize the object as an XML String.
       def to_xml
-        to_node.to_xml
+        to_node.document.to_xml
       end
 
       # Serialize the object as a human-readable String.
