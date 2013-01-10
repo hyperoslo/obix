@@ -14,10 +14,16 @@ module OBIX
     end
 
     # Respond to methods matching OBIX tags.
-    def method_missing method, *args, &block
-      object = OBIX::Objects.find method
+    def method_missing method, attributes, &block
+      klass = Objects.find method
 
-      @objects.push object.new *args, &block
+      object = klass.new &block
+
+      attributes.each do |key, value|
+        object.send "#{key}=", value
+      end
+
+      @objects.push object
     end
   end
 

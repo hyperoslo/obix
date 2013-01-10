@@ -21,14 +21,14 @@ class TagTest < MiniTest::Unit::TestCase
   end
 
   def test_get_attribute
-    dummy = Dummy.new foo: "foo"
+    dummy = Dummy.new
+    dummy.foo = "foo"
 
     assert_equal "foo", dummy.foo
   end
 
   def test_set_attribute
-    dummy = Dummy.new foo: "foo"
-
+    dummy = Dummy.new
     dummy.foo = "bar"
 
     assert_equal "bar", dummy.foo

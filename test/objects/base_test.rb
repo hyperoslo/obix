@@ -13,6 +13,7 @@ class BaseTest < MiniTest::Unit::TestCase
 
     temperature = thermostat.objects.find { |obj| obj.name == "spaceTemp" }
 
+    assert_equal thermostat, temperature.parent
     assert_equal 67.2, temperature.val
     assert_equal "obix:units/fahrenheit", temperature.unit
   end

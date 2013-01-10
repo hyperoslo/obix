@@ -4,21 +4,16 @@ module OBIX
     class Base
       extend Tag
 
-      attr_reader :objects, :attributes
+      attr_accessor :objects, :parent
 
-      def initialize attributes = {}, objects = [], &block
+      def initialize &block
         @attributes = {}
-
-        attributes.each do |key, value|
-          send "#{key.to_s.underscore}=", value
-        end
+        @objects    = []
 
         if block_given?
           builder = OBIX::Builder.new &block
 
           @objects = builder.objects
-        else
-          @objects = objects
         end
       end
 
@@ -48,21 +43,26 @@ module OBIX
         # Parse an XML element as OBIX.
         #
         # element - A Nokogiri::XML::Node describing an element.
+        # parent  - An Objects::Object instance or derivative thereof describing
+        #           the object's parent.
         #
         # Returns an Object instance or derivative thereof.
-        def parse element
-          attributes = {}
-          objects    = []
+        def parse element, parent = nil
+          klass = Objects.find element.name
+
+          object = klass.new
 
           element.attributes.each do |name, attribute|
-            attributes.store name.to_sym, attribute.value unless attribute.namespace
+            object.send "#{name.underscore}=", attribute.value unless attribute.namespace
           end
 
           element.children.each do |child|
-            objects.push parse child unless child.is_a? Nokogiri::XML::Text
+            object.objects.push parse(child, object) unless child.is_a? Nokogiri::XML::Text
           end
 
-          Objects.find(element.name).new attributes, objects
+          object.parent = parent
+
+          object
         end
 
       end
@@ -73,7 +73,7 @@ module OBIX
       #
       # xml - A Nokogiri::XML::Builder instance.
       def build builder
-        builder.send tag, attributes do |builder|
+        builder.send tag, @attributes do |builder|
           objects.each do |object|
             object.build builder
           end
