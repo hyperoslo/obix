@@ -8,7 +8,7 @@ module OBIX
       # value - Any object that responds to `to_i`.
       #
       # Returns an integer.
-      def self.cast value
+      def cast value
         value.to_i
       end
 

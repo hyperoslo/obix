@@ -8,7 +8,7 @@ module OBIX
       # value - A string that is either "true" or "false".
       #
       # Returns a boolean.
-      def self.cast value
+      def cast value
         case value
         when "true"
           true

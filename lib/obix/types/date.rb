@@ -10,7 +10,7 @@ module OBIX
       # value - A string that may be parsed by `Date.parse`.
       #
       # Returns a string.
-      def self.cast value
+      def cast value
         ::Date.parse value
       end
 

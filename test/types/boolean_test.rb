@@ -7,7 +7,12 @@ require "active_support/all"
 require "test_helper"
 
 class BooleanTest < MiniTest::Unit::TestCase
+  def setup
+    @object = OBIX::Objects::Object.new
+    @type   = OBIX::Types::Boolean.new @object
+  end
+  
   def test_cast
-    assert_equal true, OBIX::Types::Boolean.cast("true")
+    assert_equal true, @type.cast("true")
   end
 end

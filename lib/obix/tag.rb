@@ -18,7 +18,7 @@ module OBIX
     # options - A Hash of query options:
     #           :type - A class describing the type of this attribute (defaults to nil).
     def attribute name, options = {}
-      type    = options.fetch :type, nil
+      klass   = options.fetch :type, nil
       default = options.fetch :default, nil
 
       name = name.to_s.underscore
@@ -26,7 +26,8 @@ module OBIX
       define_method name do
         value = @attributes[name] || default
 
-        if type
+        if klass
+          type = klass.new self
           type.cast value
         else
           value

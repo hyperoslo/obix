@@ -10,7 +10,7 @@ module OBIX
       # value - A String describing an XSD
       #
       # Returns an Integer.
-      def self.cast value
+      def cast value
         duration = RDF::Literal::Duration.new value
         duration.to_i
       end

@@ -8,7 +8,7 @@ module OBIX
       # value - Any object that responds to `to_f`.
       #
       # Returns a float.
-      def self.cast value
+      def cast value
         value.to_f
       end
 

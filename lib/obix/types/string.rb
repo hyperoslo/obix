@@ -8,7 +8,7 @@ module OBIX
       # value - Any object that responds to `to_s`.
       #
       # Returns a string.
-      def self.cast value
+      def cast value
         value.to_s
       end
 
