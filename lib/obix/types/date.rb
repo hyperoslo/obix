@@ -3,7 +3,7 @@ require "date"
 module OBIX
   module Types
 
-    class Date
+    class Date < Type
 
       # Cast the given value to a date.
       #

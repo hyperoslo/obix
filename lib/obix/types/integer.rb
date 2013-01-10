@@ -1,7 +1,7 @@
 module OBIX
   module Types
 
-    class Integer
+    class Integer < Type
 
       # Cast the given value to an integer.
       #

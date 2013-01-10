@@ -1,7 +1,7 @@
 module OBIX
   module Types
 
-    class String
+    class String < Type
 
       # Cast the given value to a string.
       #

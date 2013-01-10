@@ -1,6 +1,7 @@
 module OBIX
 
   module Types
+    autoload :Type, "obix/types/type"
     autoload :String, "obix/types/string"
     autoload :Float, "obix/types/float"
     autoload :Boolean, "obix/types/boolean"

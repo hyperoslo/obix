@@ -1,7 +1,7 @@
 module OBIX
   module Types
 
-    class Float
+    class Float < Type
 
       # Cast the given value to a float.
       #

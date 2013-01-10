@@ -3,7 +3,7 @@ require "rdf/xsd"
 module OBIX
   module Types
 
-    class Duration
+    class Duration < Type
 
       # Cast the given value to an integer describing seconds.
       #

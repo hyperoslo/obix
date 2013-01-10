@@ -3,7 +3,7 @@ require "time"
 module OBIX
   module Types
 
-    class Time
+    class Time < Type
 
       # Cast the given value to a time.
       #

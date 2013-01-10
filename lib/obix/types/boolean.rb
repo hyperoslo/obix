@@ -1,7 +1,7 @@
 module OBIX
   module Types
 
-    class Boolean
+    class Boolean < Type
 
       # Cast the given value to a boolean.
       #
