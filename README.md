@@ -74,7 +74,7 @@ activate.invoke
 ### Create a watch
 
 ```ruby
-watch = Watch.make "http://domain/watchservice"
+watch = OBIX::Watch.make "http://domain/watchservice"
 
 # Add objects to the watch
 watch.add "/thermostat"
