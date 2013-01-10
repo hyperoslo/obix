@@ -18,14 +18,18 @@ module OBIX
       # Returns an OBIX::Objects::Object or derivative thereof describing
       # the result of the operation.
       def invoke object = nil
-        uri = URI "http://example.org/#{href}"
+        url = URI href
 
-        response = Net::HTTP.start uri.host do |http|
+        response = Net::HTTP.start url.host, url.port do |http|
+          request = Net::HTTP::Post.new url.path
+
           if object
-            http.post href, object.to_xml
-          else
-            http.post href, nil
+            request.body = object.to_xml
           end
+
+          request.basic_auth OBIX.configuration.username, OBIX.configuration.password
+
+          http.request request
         end
 
         OBIX.parse string: response.body
