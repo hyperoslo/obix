@@ -47,7 +47,7 @@ module OBIX
 
         # Initialize an object with the given string.
         #
-        # object - A Nokogiri::XML::Node describing an element.
+        # element - A Nokogiri::XML::Node describing an element.
         #
         # Returns an Object instance.
         def parse element
@@ -57,6 +57,8 @@ module OBIX
           objects    = []
 
           element.attributes.each do |name, attribute|
+            next if attribute.namespace
+
             attributes.store name.to_sym, attribute.value
           end
 
