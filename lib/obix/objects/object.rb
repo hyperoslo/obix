@@ -6,7 +6,7 @@ module OBIX
       tag :obj
 
       attribute :name, type: Types::String
-      attribute :href, type: Types::String
+      attribute :href, type: Types::URI, default: ""
       attribute :is, type: Types::String
       attribute :null, type: Types::Boolean
       attribute :icon, type: Types::String

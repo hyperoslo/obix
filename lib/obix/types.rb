@@ -9,6 +9,7 @@ module OBIX
     autoload :Time, "obix/types/time"
     autoload :Date, "obix/types/date"
     autoload :Duration, "obix/types/duration"
+    autoload :URI, "obix/types/uri"
   end
 
 end
