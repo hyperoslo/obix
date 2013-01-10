@@ -55,9 +55,7 @@ module OBIX
           objects    = []
 
           element.attributes.each do |name, attribute|
-            next if attribute.namespace
-
-            attributes.store name.to_sym, attribute.value
+            attributes.store name.to_sym, attribute.value unless attribute.namespace
           end
 
           element.children.each do |child|
