@@ -45,14 +45,12 @@ module OBIX
 
       class << self
 
-        # Initialize an object with the given string.
+        # Parse an XML element as OBIX.
         #
         # element - A Nokogiri::XML::Node describing an element.
         #
-        # Returns an Object instance.
+        # Returns an Object instance or derivative thereof.
         def parse element
-          object = OBIX::Objects.find element.name
-
           attributes = {}
           objects    = []
 
@@ -66,7 +64,7 @@ module OBIX
             objects.push parse child unless child.is_a? Nokogiri::XML::Text
           end
 
-          object.new attributes, objects
+          Objects.find(element.name).new attributes, objects
         end
 
       end
