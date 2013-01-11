@@ -1,5 +1,3 @@
-require "confstruct"
-
 module OBIX
 
   module Configuration
