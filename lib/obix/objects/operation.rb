@@ -7,7 +7,6 @@ module OBIX
     class Operation < Object
       tag :op
 
-      attribute :href, type: Types::String
       attribute :in, type: Types::String
       attribute :out, type: Types::String
 
