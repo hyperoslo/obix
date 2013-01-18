@@ -17,12 +17,15 @@ class OperationTest < MiniTest::Unit::TestCase
   def test_invokes_operations
     operation = OBIX.parse string: fixture("objects/operation.xml")
 
-    Net::HTTP.
+    OBIX::Network.
       expects(
-        :start
+        :post
+      ).
+      with(
+        'http://domain/operate'
       ).
       returns(
-        stub body: fixture("objects/string.xml")
+        fixture "objects/string.xml"
       )
 
     result = operation.invoke

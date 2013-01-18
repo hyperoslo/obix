@@ -9,15 +9,14 @@ module OBIX
   autoload :Tag, "obix/tag"
   autoload :Builder, "obix/builder"
   autoload :Configuration, "obix/configuration"
+  autoload :Network, "obix/network"
 
   # Parse the given source as OBIX.
   #
   # source  - A Hash describing the source.
   #           :string - A String describing oBIX data.
   #           :file   - A String describing a file that contains oBIX data.
-  #           :url    - A String describing a URL that the oBIX data may be loaded from. If the
-  #                     server requires authentication, you may embed your credentials
-  #                     in the URL (e.g. "username:password@host").
+  #           :url    - A String describing a URL that the oBIX data may be loaded from.
   #
   # Returns an OBIX::Object instance.
   def self.parse source
@@ -26,25 +25,7 @@ module OBIX
     file   = source[:file]
 
     if url
-      if match = url.match(/^(.+):(.+)@(.+)$/)
-        configure do |c|
-          c.username = match[1]
-          c.password = match[2]
-        end
-
-        url      = match[3]
-      end
-
-      url = URI url
-
-      response = Net::HTTP.start url.host, url.port do |http|
-        request = Net::HTTP::Get.new url.path
-        request.basic_auth configuration.username, configuration.password
-
-        http.request request
-      end
-
-      string = response.body
+      string = Network.get url
     end
 
     if file

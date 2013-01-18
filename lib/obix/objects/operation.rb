@@ -17,21 +17,13 @@ module OBIX
       # Returns an OBIX::Objects::Object or derivative thereof describing
       # the result of the operation.
       def invoke object = nil
-        url = URI href
-
-        response = Net::HTTP.start url.host, url.port do |http|
-          request = Net::HTTP::Post.new url.path
-
-          if object
-            request.body = object.to_xml
-          end
-
-          request.basic_auth OBIX.configuration.username, OBIX.configuration.password
-
-          http.request request
+        if object
+          string = Network.post href, object
+        else
+          string = Network.post href
         end
 
-        OBIX.parse string: response.body
+        OBIX.parse string: string
       end
     end
 
