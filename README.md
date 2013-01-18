@@ -77,11 +77,10 @@ activate.invoke
 watch = OBIX::Watch.make url: "http://domain/watchservice"
 
 # Add objects to the watch
-watch.add "/thermostat"
-watch.add "/furnace"
+watch.add ["/thermostat", "/furnace"]
 
 # Remove objects from the watch
-watch.remove "/furnace"
+watch.remove ["/furnace"]
 
 # Poll everything
 watch.all
