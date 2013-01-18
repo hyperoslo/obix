@@ -12,16 +12,13 @@ module OBIX
 
       # Invoke the operation.
       #
-      # object - An OBIX::Objects::Object or derivative thereof.
+      # object - An OBIX::Objects::Object or derivative thereof. Defaults to an object
+      #          that implements the "obix:Nil" contract.
       #
       # Returns an OBIX::Objects::Object or derivative thereof describing
       # the result of the operation.
-      def invoke object = nil
-        if object
-          string = Network.post href, object
-        else
-          string = Network.post href
-        end
+      def invoke object = OBIX::Objects::Object.new
+        string = Network.post href, object
 
         OBIX.parse string: string
       end
