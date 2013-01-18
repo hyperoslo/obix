@@ -80,6 +80,10 @@ module OBIX
       end.invoke
     end
 
+    def to_s
+      @watch.to_s
+    end
+
     class << self
       alias make new
     end
