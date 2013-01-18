@@ -53,6 +53,7 @@ module OBIX
 
     document = Nokogiri::XML.parse string do |config|
       config.noblanks
+      config.strict
     end
 
     OBIX::Objects::Object.parse document.root
