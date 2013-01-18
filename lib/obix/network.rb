@@ -56,7 +56,7 @@ module OBIX
         http.request request
       end
 
-      unless response.code == 200
+      unless response.code == "200"
         raise Error, "The server responded with an unexpected status code #{response.code} for #{url}."
       end
 
