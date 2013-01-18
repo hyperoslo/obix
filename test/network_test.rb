@@ -14,10 +14,15 @@ class NetworkTest < MiniTest::Unit::TestCase
       :start
     ).
     with(
-      "example.org", 80
+      "example.org", 80, {
+        use_ssl: true,
+        verify_mode: OpenSSL::SSL::VERIFY_NONE,
+        open_timeout: 10,
+        read_timeout: 120
+      }
     ).
     returns(
-      stub code: 200, body: "<body>"
+      stub code: "200", body: "<body>"
     )
 
     body = OBIX::Network.get "http://example.org/"
@@ -31,10 +36,15 @@ class NetworkTest < MiniTest::Unit::TestCase
       :start
     ).
     with(
-      "example.org", 80
+      "example.org", 80, {
+        use_ssl: true,
+        verify_mode: OpenSSL::SSL::VERIFY_NONE,
+        open_timeout: 10,
+        read_timeout: 120
+      }
     ).
     returns(
-      stub code: 200, body: "<body>"
+      stub code: "200", body: "<body>"
     )
 
     body = OBIX::Network.post "http://example.org/"
@@ -48,10 +58,15 @@ class NetworkTest < MiniTest::Unit::TestCase
       :start
     ).
     with(
-      "example.org", 80
+      "example.org", 80, {
+        use_ssl: true,
+        verify_mode: OpenSSL::SSL::VERIFY_NONE,
+        open_timeout: 10,
+        read_timeout: 120
+      }
     ).
     returns(
-      stub code: 200, body: "<body>"
+      stub code: "200", body: "<body>"
     )
 
     object = mock
@@ -75,7 +90,7 @@ class NetworkTest < MiniTest::Unit::TestCase
       :start
     ).
     returns(
-      stub code: 500, body: nil
+      stub code: "500", body: nil
     )
 
     assert_raises OBIX::Network::Error do

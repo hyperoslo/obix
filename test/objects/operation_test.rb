@@ -17,18 +17,20 @@ class OperationTest < MiniTest::Unit::TestCase
   def test_invokes_operations
     operation = OBIX.parse string: fixture("objects/operation.xml")
 
+    object = OBIX::Objects::Object.new
+
     OBIX::Network.
       expects(
         :post
       ).
       with(
-        'http://domain/operate'
+        'http://domain/operate', object
       ).
       returns(
         fixture "objects/string.xml"
       )
 
-    result = operation.invoke
+    result = operation.invoke object
 
     assert_instance_of OBIX::Objects::String, result
   end
