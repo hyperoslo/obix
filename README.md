@@ -98,7 +98,6 @@ watch.delete
 This library is not complete. The following features are missing:
 
 * Contracts.
-* OBIX references.
 * Errors.
 * Feeds.
 
