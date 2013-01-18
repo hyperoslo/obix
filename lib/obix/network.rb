@@ -44,7 +44,14 @@ module OBIX
     def dispatch request, options
       url = options.fetch :to
 
-      response = HTTP.start url.host, url.port do |http|
+      options = {
+        use_ssl: true,
+        verify_mode: OpenSSL::SSL::VERIFY_NONE,
+        open_timeout: 10,
+        read_timeout: 120
+      }
+
+      response = HTTP.start url.host, url.port, options do |http|
         request.basic_auth OBIX.configuration.username, OBIX.configuration.password
         http.request request
       end
