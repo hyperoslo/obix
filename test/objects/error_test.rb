@@ -5,13 +5,6 @@ require "minitest/autorun"
 require "test_helper"
 
 class ErrorTest < MiniTest::Unit::TestCase
-  def test_parses_errors
-    object = OBIX.parse string: fixture("objects/error.xml")
-
-    assert_instance_of OBIX::Objects::Error, object
-    assert_equal "uh oh", object.display
-  end
-
   def test_raises_errors
     builder = OBIX::Builder.new do |obix|
       obix.err display: "uh oh"
