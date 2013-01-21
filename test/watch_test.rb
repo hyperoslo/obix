@@ -40,10 +40,6 @@ class WatchTest < MiniTest::Unit::TestCase
       )
 
     result = watch.add ["/thermostat/"]
-
-    list = result.objects.find { |obj| obj.name == "values" }
-
-    assert_equal list.objects.first.href, "/thermostat/"
   end
 
   def test_remove
