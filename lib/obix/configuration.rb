@@ -34,6 +34,30 @@ module OBIX
       definitions[:password]
     end
 
+    # The scheme of the server.
+    #
+    # host - A String describing the host.
+    def self.scheme= scheme
+      definitions[:scheme] = scheme
+    end
+
+    # The scheme of the server.
+    def self.scheme
+      definitions[:scheme] || "http"
+    end
+
+    # The host of the server.
+    #
+    # host - A String describing the host.
+    def self.host= host
+      definitions[:host] = host
+    end
+
+    # The host of the server.
+    def self.host
+      definitions[:host]
+    end
+
   end
 
 end

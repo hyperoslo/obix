@@ -44,6 +44,10 @@ module OBIX
     def dispatch request, options
       url = options.fetch :to
 
+      if url.relative?
+        url = URI.join "#{OBIX.configuration.scheme}://#{OBIX.configuration.host}", url
+      end
+
       options = {
         use_ssl: true,
         verify_mode: OpenSSL::SSL::VERIFY_NONE,

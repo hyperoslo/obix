@@ -10,20 +10,20 @@ class NetworkTest < MiniTest::Unit::TestCase
 
   def test_get
     HTTP.
-    expects(
-      :start
-    ).
-    with(
-      "example.org", 80, {
-        use_ssl: true,
-        verify_mode: OpenSSL::SSL::VERIFY_NONE,
-        open_timeout: 10,
-        read_timeout: 120
-      }
-    ).
-    returns(
-      stub code: "200", body: "<body>"
-    )
+      expects(
+        :start
+      ).
+      with(
+        "example.org", 80, {
+          use_ssl: true,
+          verify_mode: OpenSSL::SSL::VERIFY_NONE,
+          open_timeout: 10,
+          read_timeout: 120
+        }
+      ).
+      returns(
+        stub code: "200", body: "<body>"
+      )
 
     body = OBIX::Network.get "http://example.org/"
 
@@ -32,20 +32,20 @@ class NetworkTest < MiniTest::Unit::TestCase
 
   def test_post
     HTTP.
-    expects(
-      :start
-    ).
-    with(
-      "example.org", 80, {
-        use_ssl: true,
-        verify_mode: OpenSSL::SSL::VERIFY_NONE,
-        open_timeout: 10,
-        read_timeout: 120
-      }
-    ).
-    returns(
-      stub code: "200", body: "<body>"
-    )
+      expects(
+        :start
+      ).
+      with(
+        "example.org", 80, {
+          use_ssl: true,
+          verify_mode: OpenSSL::SSL::VERIFY_NONE,
+          open_timeout: 10,
+          read_timeout: 120
+        }
+      ).
+      returns(
+        stub code: "200", body: "<body>"
+      )
 
     body = OBIX::Network.post "http://example.org/"
 
@@ -54,30 +54,30 @@ class NetworkTest < MiniTest::Unit::TestCase
 
   def test_post_with_object
     HTTP.
-    expects(
-      :start
-    ).
-    with(
-      "example.org", 80, {
-        use_ssl: true,
-        verify_mode: OpenSSL::SSL::VERIFY_NONE,
-        open_timeout: 10,
-        read_timeout: 120
-      }
-    ).
-    returns(
-      stub code: "200", body: "<body>"
-    )
+      expects(
+        :start
+      ).
+      with(
+        "example.org", 80, {
+          use_ssl: true,
+          verify_mode: OpenSSL::SSL::VERIFY_NONE,
+          open_timeout: 10,
+          read_timeout: 120
+        }
+      ).
+      returns(
+        stub code: "200", body: "<body>"
+      )
 
     object = mock
 
     object.
-    expects(
-      :to_xml
-    ).
-    returns(
-      fixture "objects/string.xml"
-    )
+      expects(
+        :to_xml
+      ).
+      returns(
+        fixture "objects/string.xml"
+      )
 
     body = OBIX::Network.post "http://example.org/", object
 
@@ -86,15 +86,40 @@ class NetworkTest < MiniTest::Unit::TestCase
 
   def test_bad_response
     HTTP.
-    expects(
-      :start
-    ).
-    returns(
-      stub code: "500", body: nil
-    )
+      expects(
+        :start
+      ).
+      returns(
+        stub code: "500", body: nil
+      )
 
     assert_raises OBIX::Network::Error do
       OBIX::Network.get "http://example.org/"
     end
+  end
+
+  def test_expands_relative_urls
+    OBIX.configure do |config|
+      config.scheme = "http"
+      config.host = "example.org"
+    end
+
+    HTTP.
+      expects(
+        :start
+      ).
+      with(
+        "example.org", 80, {
+          use_ssl: true,
+          verify_mode: OpenSSL::SSL::VERIFY_NONE,
+          open_timeout: 10,
+          read_timeout: 120
+        }
+      ).
+      returns(
+        stub code: "200", body: "<body>"
+      )
+
+    body = OBIX::Network.get "/relative/url"
   end
 end
