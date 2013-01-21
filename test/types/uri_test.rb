@@ -11,7 +11,7 @@ class URITest < MiniTest::Unit::TestCase
     @object = OBIX::Objects::Object.new
     @type   = OBIX::Types::URI.new @object
   end
-  
+
   def test_cast
     assert_equal "http://example.org/", @type.cast("http://example.org/")
   end
