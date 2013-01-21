@@ -25,4 +25,14 @@ class URITest < MiniTest::Unit::TestCase
 
     assert_equal "http://domain/path/", obix.object.objects.first.href
   end
+
+  def test_encodes_invalid_urls
+    obix = OBIX::Builder.new do |obix|
+      obix.obj href: "http://domain/" do |obix|
+        obix.obj href: "virtual|path"
+      end
+    end
+
+    assert_equal "http://domain/virtual%7Cpath", obix.object.objects.first.href
+  end
 end
