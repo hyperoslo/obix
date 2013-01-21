@@ -18,7 +18,7 @@ module OBIX
           OBIX::Error
         end
 
-        super klass, display
+        super klass, self.to_xml
       end
     end
 
