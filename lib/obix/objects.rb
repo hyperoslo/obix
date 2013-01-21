@@ -14,10 +14,11 @@ module OBIX
     autoload :Duration, "obix/objects/duration"
     autoload :URI, "obix/objects/uri"
     autoload :Reference, "obix/objects/reference"
+    autoload :Error, "obix/objects/error"
 
     @objects = [
-      Object, Float, Integer, Boolean, String, Enumerable,
-      Time, Date, List, Operation, Duration, URI, Reference
+      Object, Float, Integer, Boolean, String, Enumerable, Time,
+      Date, List, Operation, Duration, URI, Reference, Error
     ]
 
     # List objects.

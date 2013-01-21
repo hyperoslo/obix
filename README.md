@@ -97,7 +97,6 @@ watch.delete
 This library is not complete. The following features are missing:
 
 * Contracts.
-* Errors.
 * Feeds.
 
 ## Contributing

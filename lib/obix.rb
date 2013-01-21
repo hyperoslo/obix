@@ -1,6 +1,7 @@
 require "obix/version"
 require "nokogiri"
 require "net/http"
+require "obix/errors"
 
 module OBIX
   autoload :Objects, "obix/objects"
