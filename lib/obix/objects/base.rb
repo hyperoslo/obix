@@ -62,6 +62,10 @@ module OBIX
 
           object.parent = parent
 
+          if object.is_a? Error
+            object.raise
+          end
+
           object
         end
 
