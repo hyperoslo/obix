@@ -20,9 +20,6 @@ module OBIX
         end
 
         url.to_s
-      rescue ::URI::InvalidURIError
-        value = ::URI.encode value
-        retry
       end
 
     end
