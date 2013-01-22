@@ -74,7 +74,11 @@ activate.invoke
 ### Create a watch
 
 ```ruby
+# Create a new watch...
 watch = OBIX::Watch.make url: "http://domain/watchservice"
+
+# ... or connect to an existing watch
+watch = OBIX::Watch.conncet url: "http://domain/watchservice/watch1"
 
 # Add objects to the watch
 watch.add ["/thermostat", "/furnace"]

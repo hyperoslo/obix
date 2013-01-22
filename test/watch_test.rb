@@ -6,6 +6,12 @@ require "active_support/all"
 require "test_helper"
 
 class WatchTest < MiniTest::Unit::TestCase
+  def test_connect
+    watch = OBIX::Watch.connect file: "test/fixtures/watch.xml"
+
+    assert_instance_of OBIX::Watch, watch
+  end
+  
   def test_make
     OBIX::Objects::Operation.any_instance.
       expects(

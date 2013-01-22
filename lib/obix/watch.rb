@@ -4,17 +4,11 @@ module OBIX
   
   class Watch
 
-    # Create a new watch.
+    # Initialize a watch.
     #
-    # source - A Hash of options (see OBIX#parse for details).
-    def initialize source
-      service = OBIX.parse source
-
-      make = service.objects.find do |object|
-        object.name == "make"
-      end
-
-      @watch = make.invoke
+    # watch - An OBIX object that implements the Watch contract.
+    def initialize watch
+      @watch = watch
     end
 
     # Reference the watch.
@@ -93,6 +87,26 @@ module OBIX
 
     class << self
       alias make new
+
+      # Create a new watch.
+      #
+      # source - A Hash of options (see OBIX#parse for details).
+      def make source
+        service = OBIX.parse source
+
+        make = service.objects.find do |object|
+          object.name == "make"
+        end
+
+        new make.invoke
+      end
+
+      # Connect to an existing watch.
+      #
+      # source - A Hash of options (see OBIX#parse for details).
+      def connect source
+        new OBIX.parse source
+      end
     end
 
   end
