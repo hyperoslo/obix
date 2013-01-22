@@ -20,6 +20,20 @@ class WatchTest < MiniTest::Unit::TestCase
     assert_instance_of OBIX::Watch, watch
   end
 
+  def test_url
+    OBIX::Objects::Operation.any_instance.
+      expects(
+        :invoke
+      ).
+      returns(
+        OBIX.parse file: "test/fixtures/watch.xml"
+      )
+
+    watch = OBIX::Watch.make file: "test/fixtures/watchservice.xml"
+
+    assert_equal "http://domain/watchservice/watch32/", watch.url
+  end
+
   def test_add
     OBIX::Objects::Operation.any_instance.
       expects(

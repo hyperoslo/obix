@@ -17,6 +17,13 @@ module OBIX
       @watch = make.invoke
     end
 
+    # Reference the watch.
+    #
+    # Returns a String describing the URL to the watch.
+    def url
+      @watch.href
+    end
+
     # Add objects to the watch.
     #
     # list - An Array of String instances describing objects to add to the watch.
