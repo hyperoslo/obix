@@ -18,6 +18,13 @@ module OBIX
       @watch.href
     end
 
+    # Reference the lease of the watch.
+    #
+    # Returns an Integer describing the lease in seconds.
+    def lease
+      @watch.objects.find { |o| o.name == "lease" }.val
+    end
+
     # Add objects to the watch.
     #
     # list - An Array of String instances describing objects to add to the watch.
