@@ -6,6 +6,7 @@ module OBIX
       tag :bool
 
       attribute :val, type: Types::Boolean, default: false
+      attribute :range, type: Types::URI
     end
 
   end

@@ -11,6 +11,7 @@ class BooleanTest < MiniTest::Unit::TestCase
 
     assert_instance_of OBIX::Objects::Boolean, object
     assert_equal true, object.val
+    assert_equal "http://example.org/range", object.range
   end
 
 end
