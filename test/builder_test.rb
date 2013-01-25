@@ -8,10 +8,10 @@ require "test_helper"
 
 class BuilderTest < MiniTest::Unit::TestCase
   def test_builds
-    obix = OBIX::Builder.new do |obix|
-      obix.obj name: "foo", href: "bar" do |obix|
-        obix.obj name: "bar" do |obix|
-          obix.obj name: "baz"
+    obix = OBIX::Builder.new do
+      obj name: "foo", href: "bar" do
+        obj name: "bar" do
+          obj name: "baz"
         end
       end
     end

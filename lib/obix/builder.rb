@@ -7,11 +7,11 @@ module OBIX
     #
     # parent - An Objects::Object instance or derivative thereof describing the parent
     #          of the object that will be built.
-    def initialize parent = nil
+    def initialize parent = nil, &block
       @parent  = parent
       @objects = []
 
-      yield self
+      instance_eval &block
     end
 
     def object
