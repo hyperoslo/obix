@@ -30,7 +30,15 @@ module OBIX
 
       object.parent = @parent
 
-      @objects.push object
+      if @parent
+        @objects.push object
+      else
+        if @objects.empty?
+          @objects.push object
+        else
+          raise ArgumentError, "Object already has a root"
+        end
+      end
     end
   end
 

@@ -20,4 +20,13 @@ class BuilderTest < MiniTest::Unit::TestCase
     assert_equal "bar", obix.object.objects.first.name
     assert_equal "baz", obix.object.objects.first.objects.first.name
   end
+
+  def test_only_allows_a_single_root_element
+    assert_raises ArgumentError do
+      obix = OBIX::Builder.new do
+        obj name: "foo"
+        obj name: "bar"
+      end
+    end
+  end
 end
