@@ -46,8 +46,8 @@ module OBIX
 
       filter = OBIX::Builder.new do
         obj do
-          abstime name: "start", val: from
-          abstime name: "end", val: to
+          abstime name: "start", val: from.iso8601
+          abstime name: "end", val: to.iso8601
         end
       end.object
 
