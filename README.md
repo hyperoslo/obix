@@ -96,13 +96,6 @@ watch.changes
 watch.delete
 ```
 
-## Disclaimer
-
-This library is not complete. The following features are missing:
-
-* Contracts.
-* Feeds.
-
 ## Contributing
 
 1. Fork it

@@ -1,0 +1,4 @@
+<feed of="obix:Alarm">
+  <obj name="one"/>
+  <obj name="two"/>
+</feed>
