@@ -1,4 +1,4 @@
-require "time"
+require "date"
 
 module OBIX
   module Types
@@ -11,7 +11,7 @@ module OBIX
       #
       # Returns a string.
       def cast value
-        ::Time.parse value
+        ::DateTime.parse value
       end
 
     end

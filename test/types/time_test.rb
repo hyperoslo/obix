@@ -15,6 +15,6 @@ class TimeTest < MiniTest::Unit::TestCase
   def test_cast
     time = "2005-03-09T13:30:00Z"
 
-    assert_equal Time.parse(time), @type.cast(time)
+    assert_equal DateTime.parse(time), @type.cast(time)
   end
 end

@@ -21,13 +21,13 @@ class HistoryTest < MiniTest::Unit::TestCase
   def test_start
     history = OBIX::History.new file: "test/fixtures/history.xml"
 
-    assert_equal Time.parse("2012-01-01 00:00:00"), history.start
+    assert_equal DateTime.parse("2012-01-01 00:00:00"), history.start
   end
 
   def test_end
     history = OBIX::History.new file: "test/fixtures/history.xml"
 
-    assert_equal Time.parse("2013-01-01 00:00:00"), history.end
+    assert_equal DateTime.parse("2013-01-01 00:00:00"), history.end
   end
 
   def test_timezone
