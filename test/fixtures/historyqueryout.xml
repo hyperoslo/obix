@@ -1,0 +1,15 @@
+<obj href="obix:HistoryQueryOut">
+  <int name="count" val="2"/>
+  <abstime name="start" val="2012-01-01T00:00:00"/>
+  <abstime name="end" val="2013-01-01T00:00:00"/>
+  <list name="data" of="obix:HistoryRecord">
+    <obj>
+      <abstime name="timestamp" val="2012-01-01T00:00:00"/>
+      <real name="value" val="6.4"/>
+    </obj>
+    <obj>
+      <abstime name="timestamp" val="2012-01-01T01:00:00"/>
+      <real name="value" val="6.3"/>
+    </obj>
+  </list>
+</obj>

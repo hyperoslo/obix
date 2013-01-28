@@ -1,0 +1,9 @@
+<obj href="http://domain/history/" is="obix:History">
+  <int name="count" val="100"/>
+  <abstime name="start" val="2012-01-01T00:00:00"/>
+  <abstime name="end" val="2013-01-01T00:00:00"/>
+  <op name="query" href="query/" in="obix:HistoryFilter" out="obix:HistoryQueryOut"/>
+  <op name="rollup" href="rollup/" in="obix:HistoryRollupIn" out="obix:HistoryRollupOut"/>
+  <feed name="feed" href="feed/" of="obix:HistoryRecord" in="obix:HistoryFilter"/>
+  <str name="tz" val="America/New_York"/>
+</obj>
