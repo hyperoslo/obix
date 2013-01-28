@@ -12,7 +12,7 @@ module OBIX
     # object - A Objects::Object or derivative thereof describing the OBIX element to send.
     def get url
       url     = URI url
-      request = HTTP::Get.new url.path
+      request = HTTP::Get.new url.path + "?" + url.query
 
       dispatch request, to: url
     end
@@ -23,7 +23,7 @@ module OBIX
     # object - A Objects::Object or derivative thereof describing the OBIX element to send.
     def post url, object = nil
       url     = URI url
-      request = HTTP::Post.new url.path
+      request = HTTP::Post.new url.path + "?" + url.query
 
       if object
         request.body = object.to_xml
