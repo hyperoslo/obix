@@ -19,7 +19,7 @@ module OBIX
     end
 
     # Respond to methods matching OBIX tags.
-    def method_missing method, attributes, &block
+    def method_missing method, attributes = {}, &block
       klass = Objects.find method
 
       object = klass.new &block
