@@ -1,5 +1,5 @@
 module OBIX
-  
+
   class History
 
     # Initialize a history.
