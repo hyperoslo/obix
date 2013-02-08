@@ -99,7 +99,7 @@ watch.delete
 ### Query an object's history
 
 ```ruby
-history == OBIX::History.new url: "http://domain/history"
+history = OBIX::History.new url: "http://domain/history"
 
 history.query start: 2.year.ago, end: 1.year.ago
 ```
