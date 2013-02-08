@@ -104,6 +104,14 @@ history = OBIX::History.new url: "http://domain/history"
 history.query start: 2.year.ago, end: 1.year.ago
 ```
 
+### Query alarms
+
+```ruby
+alarms = OBIX::Alarms.new url: "http://domain/alarmservice"
+
+alarms.query start: 2.years.ago, end: 1.year.ago
+```
+
 ## Contributing
 
 1. Fork it

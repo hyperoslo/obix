@@ -1,0 +1,5 @@
+<obj>
+  <int name="count" min="0" val="3"/>
+  <op name="query" in="obix:AlarmFilter" out="obix:AlarmQueryOut"/>
+  <feed name="feed" in="obix:AlarmFilter" of="obix:Alarm"/>
+</obj>

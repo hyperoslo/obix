@@ -7,6 +7,7 @@ module OBIX
   autoload :Objects, "obix/objects"
   autoload :Types, "obix/types"
   autoload :Watch, "obix/watch"
+  autoload :Alarms, "obix/alarms"
   autoload :History, "obix/history"
   autoload :Tag, "obix/tag"
   autoload :Builder, "obix/builder"
