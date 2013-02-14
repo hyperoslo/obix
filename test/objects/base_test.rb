@@ -24,6 +24,20 @@ class BaseTest < MiniTest::Unit::TestCase
     end
   end
 
+  def test_finds_objects
+    builder = OBIX::Builder.new do
+      obj name: "foo" do
+        obj name: "bar"
+      end
+    end
+
+    foo = builder.object
+
+    bar = foo.find :bar
+
+    assert_equal "bar", bar.name
+  end
+
   def test_serializes_to_string
     thermostat = OBIX.parse file: "test/fixtures/valid.xml"
 

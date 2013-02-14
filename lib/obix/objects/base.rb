@@ -17,6 +17,13 @@ module OBIX
         end
       end
 
+      # Find the object by the given name.
+      #
+      # name - A String or Symbol describing the "name" attribute of an object.
+      def find name
+        object = objects.find { |o| o.name == name.to_s }
+      end
+
       # Serialize the object as a Nokogiri::XML::Node.
       def to_node
         Nokogiri::XML::Builder.new do |xml|
