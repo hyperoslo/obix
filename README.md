@@ -1,6 +1,6 @@
 # OBIX
 
-Ruby oBIX parser.
+Ruby OBIX parser.
 
 ## Installation
 
@@ -119,3 +119,8 @@ alarms.query start: 2.years.ago, end: 1.year.ago
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Credits
+
+Hyper made this. We're a digital communications agency with a passion for good code,
+and if you're using this library we probably want to hire you.
