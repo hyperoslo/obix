@@ -1,5 +1,7 @@
 # OBIX
 
+[![Code Climate](https://codeclimate.com/github/hyperoslo/obix.png)](https://codeclimate.com/github/hyperoslo/obix)
+
 Ruby OBIX parser.
 
 ## Installation
