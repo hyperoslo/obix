@@ -14,9 +14,9 @@ module OBIX
         parent = @element.parent
 
         if parent
-          url = ::URI.join "#{OBIX.configuration.scheme}://#{OBIX.configuration.host}", parent.href, value
+          url = ::URI.join parent.href, value
         else
-          url = ::URI.join value
+          url = ::URI.join "#{OBIX.configuration.scheme}://#{OBIX.configuration.host}", value
         end
 
         url.to_s
