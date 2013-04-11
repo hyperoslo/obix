@@ -119,7 +119,7 @@ class WatchTest < MiniTest::Unit::TestCase
 
     changes = watch.changes
 
-    assert_equal "/thermostat/", changes.first.href
+    assert_equal "http://example.org/thermostat/", changes.first.href
     assert_equal 39.28, changes.first.val
   end
 
@@ -144,7 +144,7 @@ class WatchTest < MiniTest::Unit::TestCase
 
     changes = watch.all
 
-    assert_equal "/thermostat/", changes.first.href
+    assert_equal "http://example.org/thermostat/", changes.first.href
     assert_equal 39.28, changes.first.val
   end
 

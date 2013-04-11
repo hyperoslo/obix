@@ -13,8 +13,8 @@ module OBIX
       def cast value
         parent = @element.parent
 
-        if parent and parent.href.present?
-          url = ::URI.join parent.href, value
+        if parent
+          url = ::URI.join "#{OBIX.configuration.scheme}://#{OBIX.configuration.host}", parent.href, value
         else
           url = ::URI.join value
         end
