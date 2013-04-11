@@ -99,11 +99,6 @@ class NetworkTest < MiniTest::Unit::TestCase
   end
 
   def test_expands_relative_urls
-    OBIX.configure do |config|
-      config.scheme = "http"
-      config.host = "example.org"
-    end
-
     HTTP.
       expects(
         :start

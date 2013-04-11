@@ -10,6 +10,10 @@ module OBIX
       @definitions ||= {}
     end
 
+    def self.definitions= hash
+      @definitions = hash
+    end
+
     # The username to use when communicating with the server.
     #
     # username - A String describing the username.

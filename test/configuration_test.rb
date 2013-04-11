@@ -6,6 +6,14 @@ require "active_support/all"
 require "test_helper"
 
 class ConfigurationTest < MiniTest::Unit::TestCase
+  def setup
+    @definitions = OBIX.configuration.definitions.clone
+  end
+
+  def teardown
+    OBIX.configuration.definitions = @definitions
+  end
+
   def test_configures
     OBIX::Configuration.configure do |config|
       config.username = "username"

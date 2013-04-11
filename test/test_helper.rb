@@ -1,5 +1,10 @@
 require "mocha/setup"
 
+OBIX.configure do |config|
+  config.scheme = "http"
+  config.host = "example.org"
+end
+
 class MiniTest::Unit::TestCase
 
   # Read the given fixture.
