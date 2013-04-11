@@ -25,4 +25,24 @@ class URITest < MiniTest::Unit::TestCase
 
     assert_equal "http://domain/path/", obix.object.objects.first.href
   end
+
+  def test_derives_base_uri_from_request
+    builder = OBIX::Builder.new do |obix|
+      obix.obj do |obix|
+        obix.obj href: "path/"
+      end
+    end
+
+    OBIX::Network.
+      expects(
+        :get
+      ).
+      returns(
+        builder.object.to_xml
+      )
+
+    object = OBIX.parse url: "http://domain"
+
+    assert_equal "http://domain/path/", object.objects.first.href
+  end
 end

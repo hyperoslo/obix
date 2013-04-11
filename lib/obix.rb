@@ -40,7 +40,22 @@ module OBIX
       config.strict
     end
 
-    OBIX::Objects::Object.parse document.root
+    object = OBIX::Objects::Object.parse document.root
+
+    # According to chapter 5.2 of the OBIX specification, objects that don't have a "href"
+    # attribute should have it derived from the server's authority URI.
+    #
+    # > As a general rule every object accessible for a read MUST specify a URI. An oBIX
+    # > document returned from a read request MUST specify a root URI. However, there are
+    # > certain cases where the object is transient, such as a computed object from an
+    # > operation invocation. In these cases there MAY not be a root URI, meaning there
+    # > is no way to retrieve this particular object again. If no root URI is provided, then
+    # > the server's authority URI is implied to be the base URI for resolving relative URI references.
+    if url and object.href.blank?
+      object.href = url
+    end
+
+    object
   end
 
   def self.configuration
