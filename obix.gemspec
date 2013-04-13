@@ -19,6 +19,11 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "mocha"
+  gem.add_development_dependency "guard"
+  gem.add_development_dependency "guard-minitest"
+  gem.add_development_dependency "rb-inotify"
+  gem.add_development_dependency "rb-fsevent"
+  gem.add_development_dependency "rb-fchange"
   gem.add_runtime_dependency "nokogiri"
   gem.add_runtime_dependency "rdf-xsd"
   gem.add_runtime_dependency "equivalent-xml"
