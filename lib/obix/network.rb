@@ -65,7 +65,6 @@ module OBIX
       end
 
       response.body
-
     rescue ::Timeout::Error
       raise Timeout, "The remote server did not respond in a timely fashion"
     end
