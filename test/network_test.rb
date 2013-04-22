@@ -117,4 +117,18 @@ class NetworkTest < MiniTest::Unit::TestCase
 
     body = OBIX::Network.get "/relative/url"
   end
+
+  def test_times_out
+    HTTP.
+      expects(
+        :start
+      ).
+      raises(
+        ::Timeout::Error
+      )
+
+    assert_raises OBIX::Network::Timeout do
+      OBIX::Network.get "http://example.org/"
+    end
+  end
 end

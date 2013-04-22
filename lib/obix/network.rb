@@ -65,8 +65,12 @@ module OBIX
       end
 
       response.body
+
+    rescue ::Timeout::Error
+      raise Timeout
     end
 
     class Error < StandardError; end
+    class Timeout < Error; end
   end
 end
