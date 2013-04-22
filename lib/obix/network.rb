@@ -70,7 +70,8 @@ module OBIX
       raise Timeout, "The remote server did not respond in a timely fashion"
     end
 
-    class Error < StandardError; end
+    class Error < ::OBIX::Error; end
+
     class Timeout < Error; end
   end
 end
