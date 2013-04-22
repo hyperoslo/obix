@@ -52,7 +52,7 @@ module OBIX
         use_ssl: true,
         verify_mode: OpenSSL::SSL::VERIFY_NONE,
         open_timeout: 10,
-        read_timeout: 120
+        read_timeout: OBIX.configuration.timeout
       }
 
       response = HTTP.start url.host, url.port, options do |http|

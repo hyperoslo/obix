@@ -62,6 +62,18 @@ module OBIX
       definitions[:host]
     end
 
+    # Timeout.
+    #
+    # seconds - An Integer describing timeout in seconds.
+    def self.timeout= seconds
+      definitions[:timeout] = seconds
+    end
+
+    # Timeout.
+    def self.timeout
+      definitions[:timeout] || 30
+    end
+
   end
 
 end

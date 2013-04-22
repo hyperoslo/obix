@@ -20,11 +20,13 @@ class ConfigurationTest < MiniTest::Unit::TestCase
       config.password = "password"
       config.scheme   = "scheme"
       config.host     = "host"
+      config.timeout  = 20
     end
 
     assert_equal "username", OBIX::Configuration.username
     assert_equal "password", OBIX::Configuration.password
     assert_equal "scheme", OBIX::Configuration.scheme
     assert_equal "host", OBIX::Configuration.host
+    assert_equal 20, OBIX::Configuration.timeout
   end
 end
