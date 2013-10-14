@@ -45,7 +45,7 @@ temperature.val # => 67.2
 
 ```ruby
 # thermostat.rb
-object = OBIX::Builder.new
+object = OBIX::Builder.new do
   obj href: "http://domain/thermostat" do
     real name: "spaceTemp", unit: "obix:units/fahrenheit" val: 67.2
     real name: "setpoint", unit: "obix:units/fahrenheit" val: 72.0
