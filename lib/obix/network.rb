@@ -51,7 +51,7 @@ module OBIX
       options = {
         use_ssl: true,
         verify_mode: OpenSSL::SSL::VERIFY_NONE,
-        open_timeout: 10,
+        open_timeout: 30,
         read_timeout: OBIX.configuration.timeout
       }
 
