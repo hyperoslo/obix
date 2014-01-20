@@ -9,7 +9,7 @@ module OBIX
   autoload :Watch, "obix/watch"
   autoload :Alarms, "obix/alarms"
   autoload :History, "obix/history"
-  autoload :RecordContainer, "obix/record_container"
+  autoload :Queryable, "obix/queryable"
   autoload :Tag, "obix/tag"
   autoload :Builder, "obix/builder"
   autoload :Configuration, "obix/configuration"
