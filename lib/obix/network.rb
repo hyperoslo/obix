@@ -34,6 +34,30 @@ module OBIX
 
     private
 
+    # Get the response from a given request
+    #
+    # request - A derivative of Net::HTTPGenericRequest describing the request.
+    # options - A Hash with query options:
+    #           :to - An URI instance describing where the request should be sent.
+    #
+    # Returns a Net::HTTPResponse instance.
+    def response_from(request, url, options)
+      begin
+      response = HTTP.start url.host, url.port, options do |http|
+        request.basic_auth OBIX.configuration.username, OBIX.configuration.password
+        http.request request
+      end
+
+      unless response.code == "200"
+        raise Error, "The server responded with an unexpected status code #{response.code} for #{url}."
+      end
+
+      response.body
+      rescue ::Timeout::Error
+        raise Timeout, "The remote server did not respond in a timely fashion"
+      end
+    end
+
     # Dispatch the given request.
     #
     # request - A derivative of Net::HTTPGenericRequest describing the request.
@@ -55,18 +79,7 @@ module OBIX
         read_timeout: OBIX.configuration.timeout
       }
 
-      response = HTTP.start url.host, url.port, options do |http|
-        request.basic_auth OBIX.configuration.username, OBIX.configuration.password
-        http.request request
-      end
-
-      unless response.code == "200"
-        raise Error, "The server responded with an unexpected status code #{response.code} for #{url}."
-      end
-
-      response.body
-    rescue ::Timeout::Error
-      raise Timeout, "The remote server did not respond in a timely fashion"
+      response_from(request, url, options)
     end
 
     class Error < ::OBIX::Error; end
