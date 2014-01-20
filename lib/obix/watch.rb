@@ -23,11 +23,11 @@ module OBIX
       @watch.objects.find { |o| o.name == "lease" }.val
     end
 
-    # Add objects to the watch.
+    # Add objects to or remove objects from the watch.
     #
-    # list - An Array of String instances describing objects to add to the watch.
-    def add list
-      add = @watch.objects.find { |obj| obj.name == "add" }
+    # list - An Array of String instances describing objects to add or remove
+    def list_action list, action_type
+      action = @watch.objects.find { |obj| obj.name == action_type }
 
       obix = OBIX::Builder.new do |obix|
         obix.obj is: "obix:WatchIn" do |obix|
@@ -39,44 +39,44 @@ module OBIX
         end
       end
 
-      add.invoke obix.object
+      action.invoke obix.object
+    end
+    private :list_action
+
+    # Add objects to the watch.
+    #
+    # list - An Array of String instances describing objects to add to the watch.
+    def add list
+      list_action list, "add"
     end
 
     # Remove objects from the watch.
     #
     # list - An Array of String instances describing objects to remove from the watch.
     def remove list
-      remove = @watch.objects.find { |obj| obj.name == "remove" }
-
-      obix = OBIX::Builder.new do |obix|
-        obix.obj is: "obix:WatchIn" do |obix|
-          obix.list name: "hrefs" do |obix|
-            list.each do |item|
-              obix.uri val: item
-            end
-          end
-        end
-      end
-
-      remove.invoke obix.object
+      list_action list, "remove"
     end
 
-    # Poll objects that have changed
-    def changes
-      poll = @watch.objects.find { |obj| obj.name == "pollChanges" }
+    # Poll objects with specified name.
+    #
+    # name - a string representing the type of object to be polled in the watch
+    def poll name
+      poll = @watch.objects.find { |obj| obj.name == "poll#{name}" }
 
       poll.invoke.objects.find do |object|
         object.name == "values"
       end.objects
+    end
+    private :poll
+
+    # Poll objects that have changed
+    def changes
+      poll("Changes")
     end
 
     # Poll all objects
     def all
-      poll = @watch.objects.find { |obj| obj.name == "pollRefresh" }
-
-      poll.invoke.objects.find do |object|
-        object.name == "values"
-      end.objects
+      poll("Refresh")
     end
 
     # Delete the watch.
