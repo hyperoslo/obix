@@ -1,19 +1,22 @@
 module OBIX
 
-  class RecordContainer
+  module Queryable
+
+    # OBIX source file
+    attr_reader :source
     
-    # Initialize a RecordContainer based on OBIX source
+    # Records produced from an OBIX source file
     #
     # source - A Hash of options (see OBIX#parse for details).
-    def initialize source
-      @records = OBIX.parse source
+    def records
+      @records ||= OBIX.parse @source
     end
     
     # The number of records.
     # 
     # Returns an Integer.
     def count
-      @records.objects.find { |o| o.name == "count" }.val
+      self.records.objects.find { |o| o.name == "count" }.val
     end
     
     # Query the records
@@ -25,7 +28,7 @@ module OBIX
       from = options.fetch :start
       to   = options.fetch :end
 
-      query = @records.objects.find { |o| o.name == "query" }
+      query = self.records.objects.find { |o| o.name == "query" }
 
       filter = OBIX::Builder.new do
         obj do
@@ -39,7 +42,7 @@ module OBIX
     end
 
     def to_s
-      @records.to_s
+      self.records.to_s
     end
   end
 end

@@ -1,22 +1,33 @@
+require "obix/queryable"
+
 module OBIX
 
-  class History < RecordContainer
+  class History
+    include Queryable
+
+    # Initialize History based on OBIX source
+    # The source will be parsed lazily
+    #
+    # source - A Hash of options (see OBIX#parse for details).
+    def initialize(source)
+      @source = source
+    end
 
     # The timestamp of the oldest record contained by the history.
     #
     # Returns a DateTime instance.
     def start
-      @records.objects.find { |o| o.name == "start" }.val
+      self.records.objects.find { |o| o.name == "start" }.val
     end
 
     # The timestamp of the newest record contained by the history.
     def end
-      @records.objects.find { |o| o.name == "end" }.val
+      self.records.objects.find { |o| o.name == "end" }.val
     end
 
     # The timezone of the history data.
     def timezone
-      @records.objects.find { |o| o.name == "tz" }.val
+      self.records.objects.find { |o| o.name == "tz" }.val
     end
 
   end
