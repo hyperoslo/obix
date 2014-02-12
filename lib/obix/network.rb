@@ -22,8 +22,26 @@ module OBIX
     # url    - A String describing where the request should be sent.
     # object - A Objects::Object or derivative thereof describing the OBIX element to send.
     def post url, object = nil
-      url     = URI url
-      request = HTTP::Post.new url.path
+      request url, HTTP::Post, object
+    end
+
+    # Make a put request.
+    #
+    # url    - A String describing where the request should be sent.
+    # object - A Objects::Object or derivative thereof describing the OBIX element to send.
+    def put url, object = nil
+      request url, HTTP::Put, object
+    end
+
+    # Make a request.
+    #
+    # url    - A String describing where the request should be sent.
+    # klass  - A Net::HTTP request object (e.g. Net::HTTP::Post).
+    # object - A Objects::Object or derivative thereof describing the OBIX element to send.
+    def request url, klass, object
+      url = URI url
+
+      request = klass.new url.path
 
       if object
         request.body = object.to_xml

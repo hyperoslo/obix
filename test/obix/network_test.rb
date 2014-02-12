@@ -29,9 +29,55 @@ class NetworkTest < MiniTest::Unit::TestCase
   end
 
   def test_post
+    http = mock
+
+    http.
+      expects(
+        :request
+      ).
+      with do |value|
+        value.is_a? Net::HTTP::Post
+      end
+
     HTTP.
       expects(
         :start
+      ).
+      with(
+        "example.org", 80, {
+          open_timeout: 30,
+          read_timeout: OBIX.configuration.timeout
+        }
+      ).
+      yields(
+        http
+      ).
+      returns(
+        stub code: "200", body: "<body>"
+      )
+
+    body = OBIX::Network.post "http://example.org/"
+
+    assert_equal "<body>", body
+  end
+
+  def test_put
+    http = mock
+
+    http.
+      expects(
+        :request
+      ).
+      with do |value|
+        value.is_a? Net::HTTP::Put
+      end
+
+    HTTP.
+      expects(
+        :start
+      ).
+      yields(
+        http
       ).
       with(
         "example.org", 80, {
@@ -43,12 +89,12 @@ class NetworkTest < MiniTest::Unit::TestCase
         stub code: "200", body: "<body>"
       )
 
-    body = OBIX::Network.post "http://example.org/"
+    body = OBIX::Network.put "http://example.org/"
 
     assert_equal "<body>", body
   end
 
-  def test_post_with_object
+  def test_request_with_object
     HTTP.
       expects(
         :start
@@ -73,7 +119,7 @@ class NetworkTest < MiniTest::Unit::TestCase
         fixture "objects/string.xml"
       )
 
-    body = OBIX::Network.post "http://example.org/", object
+    body = OBIX::Network.request "http://example.org/", HTTP::Post, object
 
     assert_equal "<body>", body
   end

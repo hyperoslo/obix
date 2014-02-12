@@ -23,25 +23,17 @@ module OBIX
       @watch.objects.find { |o| o.name == "lease" }.val
     end
 
-    # Add objects to or remove objects from the watch.
+    # Set the lease of the watch.
     #
-    # list - An Array of String instances describing objects to add or remove
-    def list_action list, action_type
-      action = @watch.objects.find { |obj| obj.name == action_type }
+    # seconds - A String describing a duration to extend the lease time of the watch to in XSD format.
+    #           See http://www.w3schools.com/schema/schema_dtypes_date.asp.
+    def lease=duration
+      lease = @watch.objects.find { |o| o.name == "lease" }
 
-      obix = OBIX::Builder.new do |obix|
-        obix.obj is: "obix:WatchIn" do |obix|
-          obix.list name: "hrefs" do |obix|
-            list.each do |item|
-              obix.uri val: item
-            end
-          end
-        end
-      end
+      lease.attributes[:val] = duration
 
-      action.invoke obix.object
+      Network.put lease.href, lease
     end
-    private :list_action
 
     # Add objects to the watch.
     #
@@ -56,18 +48,6 @@ module OBIX
     def remove list
       list_action list, "remove"
     end
-
-    # Poll objects with specified name.
-    #
-    # name - a string representing the type of object to be polled in the watch
-    def poll name
-      poll = @watch.objects.find { |obj| obj.name == "poll#{name}" }
-
-      poll.invoke.objects.find do |object|
-        object.name == "values"
-      end.objects
-    end
-    private :poll
 
     # Poll objects that have changed
     def changes
@@ -112,6 +92,38 @@ module OBIX
       def connect source
         new OBIX.parse source
       end
+    end
+
+    private
+
+    # Add objects to or remove objects from the watch.
+    #
+    # list - An Array of String instances describing objects to add or remove
+    def list_action list, action_type
+      action = @watch.objects.find { |obj| obj.name == action_type }
+
+      obix = OBIX::Builder.new do |obix|
+        obix.obj is: "obix:WatchIn" do |obix|
+          obix.list name: "hrefs" do |obix|
+            list.each do |item|
+              obix.uri val: item
+            end
+          end
+        end
+      end
+
+      action.invoke obix.object
+    end
+
+    # Poll objects with specified name.
+    #
+    # name - a string representing the type of object to be polled in the watch
+    def poll name
+      poll = @watch.objects.find { |obj| obj.name == "poll#{name}" }
+
+      poll.invoke.objects.find do |object|
+        object.name == "values"
+      end.objects
     end
 
   end

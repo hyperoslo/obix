@@ -40,7 +40,7 @@ class WatchTest < MiniTest::Unit::TestCase
     assert_equal "http://domain/watchservice/watch32/", watch.url
   end
 
-  def test_lease
+  def test_get_lease
     OBIX::Objects::Operation.any_instance.
       expects(
         :invoke
@@ -52,6 +52,32 @@ class WatchTest < MiniTest::Unit::TestCase
     watch = OBIX::Watch.make file: "test/fixtures/watchservice.xml"
 
     assert_equal 10, watch.lease
+  end
+
+  def test_set_lease
+    OBIX::Objects::Operation.any_instance.
+      expects(
+        :invoke
+      ).
+      returns(
+        OBIX.parse file: "test/fixtures/watch.xml"
+      )
+
+    watch = OBIX::Watch.make file: "test/fixtures/watchservice.xml"
+
+    builder = OBIX::Builder.new do
+      reltime name: "lease", val: "PT30S", href: "http://domain/watchservice/watch32/lease/", display: "30sec", display_name: "Lease", writable: true
+    end
+
+    OBIX::Network.
+      expects(
+        :put
+      ).
+      with do |url, object|
+        url == "http://domain/watchservice/watch32/lease/" && object.is_a?(OBIX::Objects::Duration)
+      end
+
+    watch.lease = "PT30S"
   end
 
   def test_add
