@@ -4,7 +4,7 @@ module OBIX
     class Base
       extend Tag
 
-      attr_accessor :objects, :parent
+      attr_accessor :objects, :parent, :attributes
 
       def initialize &block
         @attributes = {}
