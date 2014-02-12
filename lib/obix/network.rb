@@ -73,11 +73,14 @@ module OBIX
       end
 
       options = {
-        use_ssl: true,
-        verify_mode: OpenSSL::SSL::VERIFY_NONE,
         open_timeout: 30,
         read_timeout: OBIX.configuration.timeout
       }
+
+      if OBIX.configuration.scheme == "https"
+        options[:use_ssl] = true
+        options[:verify_mode] = OpenSSL::SSL::VERIFY_NONE
+      end
 
       response_from(request, url, options)
     end

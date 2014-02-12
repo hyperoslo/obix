@@ -15,8 +15,6 @@ class NetworkTest < MiniTest::Unit::TestCase
       ).
       with(
         "example.org", 80, {
-          use_ssl: true,
-          verify_mode: OpenSSL::SSL::VERIFY_NONE,
           open_timeout: 30,
           read_timeout: OBIX.configuration.timeout
         }
@@ -37,8 +35,6 @@ class NetworkTest < MiniTest::Unit::TestCase
       ).
       with(
         "example.org", 80, {
-          use_ssl: true,
-          verify_mode: OpenSSL::SSL::VERIFY_NONE,
           open_timeout: 30,
           read_timeout: OBIX.configuration.timeout
         }
@@ -59,8 +55,6 @@ class NetworkTest < MiniTest::Unit::TestCase
       ).
       with(
         "example.org", 80, {
-          use_ssl: true,
-          verify_mode: OpenSSL::SSL::VERIFY_NONE,
           open_timeout: 30,
           read_timeout: OBIX.configuration.timeout
         }
@@ -105,8 +99,6 @@ class NetworkTest < MiniTest::Unit::TestCase
       ).
       with(
         "example.org", 80, {
-          use_ssl: true,
-          verify_mode: OpenSSL::SSL::VERIFY_NONE,
           open_timeout: 30,
           read_timeout: OBIX.configuration.timeout
         }
@@ -129,6 +121,36 @@ class NetworkTest < MiniTest::Unit::TestCase
 
     assert_raises OBIX::Network::Timeout do
       OBIX::Network.get "http://example.org/"
+    end
+  end
+
+  def test_with_https
+    OBIX.configure do |config|
+      config.scheme = "https"
+    end
+
+    HTTP.
+      expects(
+        :start
+      ).
+      with(
+        "example.org", 80, {
+          use_ssl: true,
+          verify_mode: OpenSSL::SSL::VERIFY_NONE,
+          open_timeout: 30,
+          read_timeout: OBIX.configuration.timeout
+        }
+      ).
+      returns(
+        stub code: "200", body: "<body>"
+      )
+
+    body = OBIX::Network.get "http://example.org/"
+
+    assert_equal "<body>", body
+
+    OBIX.configure do |config|
+      config.scheme = "http"
     end
   end
 end
