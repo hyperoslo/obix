@@ -1,6 +1,6 @@
 # OBIX
 
-[![Code Climate](https://codeclimate.com/github/hyperoslo/obix.png)](https://codeclimate.com/github/hyperoslo/obix)
+[![Code Climate](https://img.shields.io/codeclimate/github/hyperoslo/obix.svg?style=flat)](https://codeclimate.com/github/hyperoslo/obix)
 
 Ruby OBIX parser.
 
